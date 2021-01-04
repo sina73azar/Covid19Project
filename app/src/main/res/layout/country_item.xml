@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="160dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/shape_bg_item_list"
+        android:clickable="true"
+        android:padding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_flag"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/text_flag"
+        app:layout_constraintBottom_toTopOf="@+id/tv_country_name_list_item"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:srcCompat="@drawable/covid_earth" />
+
+    <TextView
+        android:id="@+id/tv_country_name_list_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingStart="3dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:text="Argentina"
+        android:lines="1"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/tv_death_to_all_caught_percentage"
+        app:layout_constraintEnd_toEndOf="@+id/img_flag"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/img_flag"
+        app:layout_constraintTop_toBottomOf="@+id/img_flag" />
+
+    <TextView
+        android:id="@+id/tv_death_to_all_caught_percentage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        android:paddingStart="3dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:text="2.53%"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/tv_country_name_list_item"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/tv_country_name_list_item"
+        app:layout_constraintTop_toBottomOf="@+id/tv_country_name_list_item" />
+
+    <TextView
+        android:id="@+id/textview2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingVertical="3dp"
+        android:paddingTop="4dp"
+        android:text="مبتلاشدگان"
+        android:textAlignment="center"
+        android:textColor="@color/light_grey"
+        app:layout_constraintBottom_toTopOf="@+id/tv_all_caught"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/img_flag"
+        app:layout_constraintTop_toTopOf="@+id/img_flag"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <TextView
+        android:id="@+id/tv_all_caught"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:text="88545111215"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/textView15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/img_flag"
+        app:layout_constraintTop_toBottomOf="@+id/textview2" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingVertical="3dp"
+        android:text="مرگ"
+        android:textAlignment="center"
+        android:textColor="@color/light_grey"
+        app:layout_constraintBottom_toTopOf="@+id/tv_all_death_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/img_flag"
+        app:layout_constraintTop_toBottomOf="@+id/tv_all_caught" />
+
+    <TextView
+        android:id="@+id/tv_all_death_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:text="121456562"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_death_to_all_caught_percentage"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/img_flag"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

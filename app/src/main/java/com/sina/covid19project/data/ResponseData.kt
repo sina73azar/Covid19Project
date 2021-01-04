@@ -72,5 +72,6 @@ data class ResponseData(
     val recoveredPerOneMillion: Double,
     @SerializedName("criticalPerOneMillion")
     @Expose
-    val criticalPerOneMillion: Double
+    val criticalPerOneMillion: Double,
+    var percentage:Float?
 )

@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding= FragmentHomeBinding.inflate(inflater)
         return binding.root
@@ -45,13 +45,13 @@ class HomeFragment : Fragment() {
         getLiveCovid19Data()
 
         binding.tvByCountry.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_detailsFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_listFragment)
         }
     }
 
 
     private fun getLiveCovid19Data() {
-        Toast.makeText(requireContext(), "getting live Data", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "بروزرسانی ...", Toast.LENGTH_SHORT).show()
         val api = ApiClient.client.create(ApiInterface::class.java)
         val call = api.getMainMessage()
         call.enqueue(object : Callback<JsonObject> {
