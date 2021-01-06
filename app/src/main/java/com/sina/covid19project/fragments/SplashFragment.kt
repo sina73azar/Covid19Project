@@ -6,19 +6,21 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.Display
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.sina.covid19project.R
+import com.sina.covid19project.data.ApiClient
+import com.sina.covid19project.data.ApiInterface
 
 
 class SplashFragment : Fragment() {
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,12 +31,11 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         Handler(Looper.getMainLooper()).postDelayed(
             {
                 checkInternetPermission()
-
-                Log.e(TAG, "onViewCreated: gotoHomeFragment")
-            }, 4000
+            }, 3000
         )
 
     }
@@ -51,11 +52,11 @@ class SplashFragment : Fragment() {
             )
             == PackageManager.PERMISSION_GRANTED
         ) {
-            goToHomeFragment()
             Log.e(TAG, "checkInternetPermission: permission is granted before")
+            goToHomeFragment()
         } else {
-            requestPermission()
             Log.e(TAG, "checkInternetPermission: permission have to be requested")
+            requestPermission()
         }
     }
 
@@ -65,10 +66,6 @@ class SplashFragment : Fragment() {
             arrayOf(android.Manifest.permission.INTERNET),
             INTERNET_PERMISSION_CODE
         )
-    }
-
-    private fun goToHomeFragment() {
-        findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
     }
 
     override fun onRequestPermissionsResult(
@@ -81,8 +78,12 @@ class SplashFragment : Fragment() {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 goToHomeFragment()
             } else {
+                Log.e(TAG, "onRequestPermissionsResult: request for permission again", )
                 requestPermission()
             }
         }
+    }
+    private fun goToHomeFragment() {
+        findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
     }
 }

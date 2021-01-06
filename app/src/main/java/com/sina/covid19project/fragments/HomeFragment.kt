@@ -2,13 +2,14 @@ package com.sina.covid19project.fragments
 
 
 import android.annotation.SuppressLint
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.gson.JsonObject
 import com.sina.covid19project.R
@@ -26,10 +27,14 @@ class HomeFragment : Fragment() {
     companion object{
         const val TAG="HomeFragment"
     }
+    lateinit var mSharedPref:SharedPreferences
     lateinit var binding: FragmentHomeBinding
-     var cases:String="0"
-     var deaths:String=""
-     var recoverd:String=""
+     var cases:String?=null
+     var deaths:String?=null
+     var recovered:String?=null
+     var todayCases:String?=null
+     var todayDeath:String?=null
+     var todayRecovered:String?=null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,7 +46,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        mSharedPref=requireActivity().getPreferences(MODE_PRIVATE)
         getLiveCovid19Data()
 
         binding.tvByCountry.setOnClickListener {
@@ -51,7 +56,7 @@ class HomeFragment : Fragment() {
 
 
     private fun getLiveCovid19Data() {
-        Toast.makeText(requireContext(), "بروزرسانی ...", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(), "بروزرسانی ...", Toast.LENGTH_SHORT).show()
         val api = ApiClient.client.create(ApiInterface::class.java)
         val call = api.getMainMessage()
         call.enqueue(object : Callback<JsonObject> {
@@ -63,33 +68,66 @@ class HomeFragment : Fragment() {
                     response.body()?.let {
                         cases = it["cases"].asString
                         deaths = it["deaths"].asString
-                        recoverd=it["recovered"].asString
-
+                        recovered=it["recovered"].asString
+                        todayCases=it["todayCases"].asString
+                        todayDeath=it["todayDeaths"].asString
+                        todayRecovered=it["todayRecovered"].asString
+                        writeDataToSharedPref()
+                        setTakenDataToView()
+                        setLastUpdatedTime()
                     }
-
                 }
-
-                binding.tvShowCases.text=cases
-                binding.tvShowDeath.text=deaths
-                binding.tvShowRecovered.text=recoverd
-                //set last update
-                binding.tvDate.text= Date().time.reformat()
-
-//                Log.e(TAG, "onResponse: is response successful: ${response.isSuccessful}",)
-                Log.e(TAG, "onResponse: header cases: ${response.headers().get("cases")}",)
-
-                Log.e(TAG, "cases: $cases",)
-                Log.e(TAG, "deaths: $deaths",)
             }
-
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                Log.e(TAG, "onFailure: $t",)
+                setDatawithSharedPref()
+                setTakenDataToView()
+                binding.tvDate.text=mSharedPref.getString("date",getString(R.string.internet_error))
+                Log.e(TAG, "onFailure: ${t.message}",)
             }
 
         })
-
-
     }
+
+    private fun writeDataToSharedPref() {
+        mSharedPref.edit().apply {
+            putString("cases",cases)
+            putString("today_cases",todayCases)
+            putString("deaths",deaths)
+            putString("today_deaths",todayDeath)
+            putString("recovered",recovered)
+            putString("today_recovered",todayRecovered)
+        }.apply()
+    }
+
+    private fun setLastUpdatedTime() {
+        val date=Date().time.reformat()
+        binding.tvDate.text= date
+        //save date in sharedPref
+        mSharedPref.edit().putString("date",date).apply()
+    }
+
+    private fun setDatawithSharedPref() {
+        cases=mSharedPref.getString("cases","...")
+        todayCases=mSharedPref.getString("today_cases","...")
+        deaths=mSharedPref.getString("deaths","...")
+        todayDeath=mSharedPref.getString("today_deaths","...")
+        recovered=mSharedPref.getString("recovered","...")
+        todayRecovered=mSharedPref.getString("today_recovered","...")
+    }
+
+
+    private fun setTakenDataToView() {
+        binding.run {
+            tvShowCases.text=cases
+            tvCasesTodayHf.text=todayCases
+            tvDeathAll.text=deaths
+            tvDeathToday.text=todayDeath
+            tvShowRecovered.text=recovered
+            tvRecoveredToday.text=todayRecovered
+        }
+    }
+
+
     @SuppressLint("SimpleDateFormat")
     fun Long.reformat(): String {
         val df= SimpleDateFormat("(yyyy/MM/dd - HH:mm:ss)")

@@ -8,7 +8,7 @@
     <View
         android:id="@+id/view"
         android:layout_width="0dp"
-        android:layout_height="160dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/shape_bg_item_list"
         android:clickable="true"
@@ -19,17 +19,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:id="@+id/view8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/m_green_6"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toEndOf="@+id/img_flag"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
     <ImageView
         android:id="@+id/img_flag"
         android:layout_width="140dp"
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:contentDescription="@string/text_flag"
-        app:layout_constraintBottom_toTopOf="@+id/tv_country_name_list_item"
-        app:layout_constraintStart_toStartOf="parent"
+
+        android:adjustViewBounds="true"
+
+
+        app:layout_constraintStart_toStartOf="@id/view"
         app:layout_constraintTop_toTopOf="@+id/view"
-        app:layout_constraintVertical_chainStyle="spread"
         app:srcCompat="@drawable/covid_earth" />
 
     <TextView
@@ -37,12 +51,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/samim"
+        android:inputType="text"
+        android:lines="1"
         android:paddingStart="3dp"
         android:paddingTop="1dp"
         android:paddingBottom="1dp"
         android:text="Argentina"
-        android:lines="1"
         android:textAlignment="center"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tv_death_to_all_caught_percentage"
         app:layout_constraintEnd_toEndOf="@+id/img_flag"
         app:layout_constraintHorizontal_bias="0.5"
@@ -55,11 +72,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="@font/samim_number"
         android:paddingStart="3dp"
         android:paddingTop="1dp"
         android:paddingBottom="1dp"
         android:text="2.53%"
         android:textAlignment="center"
+        android:textColor="?attr/colorPrimaryVariant"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/tv_country_name_list_item"
         app:layout_constraintHorizontal_bias="0.5"
@@ -67,64 +86,129 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_country_name_list_item" />
 
     <TextView
-        android:id="@+id/textview2"
+        android:id="@+id/tv_st_cases_item"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingVertical="3dp"
-        android:paddingTop="4dp"
-        android:text="مبتلاشدگان"
+        android:fontFamily="@font/samim"
+        android:padding="3dp"
+        android:text="@string/text_all_in_world"
         android:textAlignment="center"
-        android:textColor="@color/light_grey"
+        android:textColor="@color/m_green_1"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_all_caught"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_all_caught"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/img_flag"
-        app:layout_constraintTop_toTopOf="@+id/img_flag"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
+        app:layout_constraintStart_toStartOf="@id/tv_all_caught"
+        app:layout_constraintTop_toTopOf="@+id/view8" />
 
     <TextView
         android:id="@+id/tv_all_caught"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
+
+        android:fontFamily="@font/samim_number"
         android:text="88545111215"
+
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/textView15"
-        app:layout_constraintEnd_toEndOf="parent"
+
+        android:textAllCaps="false"
+        android:textColor="?attr/colorPrimaryVariant"
+        app:layout_constraintBottom_toTopOf="@+id/tv_st_deaths_item"
+        app:layout_constraintEnd_toEndOf="@+id/view8"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/img_flag"
-        app:layout_constraintTop_toBottomOf="@+id/textview2" />
+        app:layout_constraintStart_toEndOf="@+id/tv_population_item"
+        app:layout_constraintTop_toBottomOf="@+id/tv_st_cases_item" />
 
     <TextView
-        android:id="@+id/textView15"
-        android:layout_width="0dp"
+        android:id="@+id/tv_st_deaths_item"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:paddingVertical="3dp"
-        android:text="مرگ"
+        android:fontFamily="@font/samim"
+
+        android:text="@string/text_deaths"
         android:textAlignment="center"
-        android:textColor="@color/light_grey"
-        app:layout_constraintBottom_toTopOf="@+id/tv_all_death_item"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/m_green_1"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_death_item"
+        app:layout_constraintEnd_toEndOf="@+id/tv_death_item"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/img_flag"
+        app:layout_constraintStart_toStartOf="@+id/tv_death_item"
         app:layout_constraintTop_toBottomOf="@+id/tv_all_caught" />
 
     <TextView
-        android:id="@+id/tv_all_death_item"
+        android:id="@+id/tv_death_item"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
+        android:fontFamily="@font/samim_number"
         android:text="121456562"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_death_to_all_caught_percentage"
-        app:layout_constraintEnd_toEndOf="@+id/view"
+        android:textColor="?attr/colorPrimaryVariant"
+
+        app:layout_constraintBottom_toBottomOf="@+id/view8"
+        app:layout_constraintEnd_toEndOf="@+id/view8"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/img_flag"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintStart_toEndOf="@+id/tv_recovered_item"
+        app:layout_constraintTop_toBottomOf="@+id/tv_st_deaths_item" />
+
+    <TextView
+        android:id="@+id/tv_st_population_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/samim"
+        android:padding="3dp"
+        android:text="@string/text_population"
+        android:textAlignment="center"
+        android:textColor="?attr/colorPrimaryVariant"
+        android:textSize="12sp"
+
+        app:layout_constraintBottom_toTopOf="@+id/tv_population_item"
+        app:layout_constraintEnd_toEndOf="@+id/tv_population_item"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/tv_population_item"
+        app:layout_constraintTop_toTopOf="@+id/view8" />
+
+    <TextView
+        android:id="@+id/tv_population_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/samim_number"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/tv_st_recovered_item"
+        app:layout_constraintEnd_toStartOf="@+id/tv_all_caught"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+
+        app:layout_constraintStart_toStartOf="@+id/view8"
+        app:layout_constraintTop_toBottomOf="@+id/tv_st_population_item"
+        tools:text="45487451" />
+
+    <TextView
+        android:id="@+id/tv_st_recovered_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/samim"
+        android:text="@string/text_recovered"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_recovered_item"
+        app:layout_constraintEnd_toEndOf="@+id/tv_recovered_item"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/tv_recovered_item"
+        app:layout_constraintTop_toBottomOf="@+id/tv_population_item" />
+
+    <TextView
+        android:id="@+id/tv_recovered_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/samim_number"
+        android:text="5451215"
+        android:textAlignment="center"
+
+        app:layout_constraintBottom_toBottomOf="@+id/view8"
+        app:layout_constraintEnd_toStartOf="@+id/tv_death_item"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/view8"
+        app:layout_constraintTop_toBottomOf="@+id/tv_st_recovered_item" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

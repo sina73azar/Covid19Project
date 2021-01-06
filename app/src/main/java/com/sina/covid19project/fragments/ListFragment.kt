@@ -18,12 +18,13 @@ import retrofit2.Response
 class ListFragment : Fragment() {
     lateinit var binding:FragmentListBinding
     lateinit var adapterObj:CountryListAdapter
+    var mList:MutableList<ResponseData>?=null
     var mSortMode:SortMode=SortMode.DEFAULT
     var mTextSearch:String=""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding= FragmentListBinding.inflate(inflater)
         return binding.root
@@ -33,32 +34,33 @@ class ListFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getMinimumListOfCountryData(mTextSearch,mSortMode)
+        adapterObj= CountryListAdapter(requireContext(),mList)
+        getMinimumListOfCountryData()
         binding.etSearch.addTextChangedListener {
             mTextSearch=it.toString()
-            getMinimumListOfCountryData(mTextSearch,mSortMode)
+            getMinimumListOfCountryData()
         }
         binding.tvPopulationLf.setOnClickListener {
             mSortMode=SortMode.POPULATION
-            getMinimumListOfCountryData(mTextSearch,mSortMode)
+            getMinimumListOfCountryData()
         }
         binding.tvHighestCaught.setOnClickListener {
             mSortMode=SortMode.CASES
-            getMinimumListOfCountryData(mTextSearch,mSortMode)
+            getMinimumListOfCountryData()
         }
         binding.tvZToA.setOnClickListener {
             mSortMode=SortMode.Z_TO_A
-            getMinimumListOfCountryData(mTextSearch,mSortMode)
+            getMinimumListOfCountryData()
         }
         binding.tvHighestPercentage.setOnClickListener {
-            mSortMode=SortMode.Z_TO_A
-            getMinimumListOfCountryData(mTextSearch,mSortMode)
+            mSortMode=SortMode.PERCENTAGE
+            getMinimumListOfCountryData()
         }
     }
 
 
 
-    private fun getMinimumListOfCountryData(searchText:String,sortMode: SortMode) {
+    private fun getMinimumListOfCountryData() {
 //        var listTemp= mutableListOf<ResponseData>()
         val api = ApiClient.client.create(ApiInterface::class.java)
         val call = api.getAllCountries()
@@ -68,7 +70,8 @@ class ListFragment : Fragment() {
                 response: Response<MutableList<ResponseData>>
             ) {
                 if (response.isSuccessful) {
-                    setupRecyclerViewWithThisList(response.body()!!, searchText, sortMode)
+                    mList=response.body()!!
+                    setupRecyclerViewWithThisList()
                 }
             }
 
@@ -78,33 +81,29 @@ class ListFragment : Fragment() {
             }
         })
 
+
     }
 
-    private fun setupRecyclerViewWithThisList(list: MutableList<ResponseData>,searchText: String,sortMode: SortMode) {
-        var newList= mutableListOf<ResponseData>()
-        newList = if (searchText == "") {
-            list
+    private fun setupRecyclerViewWithThisList() {
+        val newList: MutableList<ResponseData> = if (mTextSearch == "") {
+            mList!!
         } else {
-            list.filter { it.country.contains(searchText,true) } as MutableList<ResponseData>
+            mList?.filter { it.country?.contains(mTextSearch,true)?:true }
+         as MutableList<ResponseData>
         }
-        when (sortMode) {
-            
+        when (mSortMode) {
             SortMode.CASES->{newList.sortByDescending { it.cases  }
-                Log.e(TAG, "setupRecyclerViewWithThisList: SortMode is cases", )
-            }
+                Log.e(TAG, "setupRecyclerViewWithThisList: SortMode is cases", ) }
             SortMode.Z_TO_A->{newList.sortByDescending { it.country }
                 Log.e(TAG, "setupRecyclerViewWithThisList: SortMode is Z to A", )}
             SortMode.POPULATION->{newList.sortByDescending { it.population}
                 Log.e(TAG, "setupRecyclerViewWithThisList: SortMode is population", )}
-            SortMode.PERCENTAGE->{ newList.sortBy { (it.deaths.toFloat()/it.cases.toFloat())*100 }
+            SortMode.PERCENTAGE->{ newList.sortByDescending { it.percentage }
                 Log.e(TAG, "setupRecyclerViewWithThisList: SortMode is percentage", )}
             else -> {
                 Log.e(TAG, "setupRecyclerViewWithThisList: SortMode is Default", )}
         }
-        val adapterObj=CountryListAdapter(requireContext(),newList)
+        adapterObj.setList(newList)
         binding.rvCountries.adapter=adapterObj
     }
-
-
-
 }

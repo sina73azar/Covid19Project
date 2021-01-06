@@ -6,72 +6,72 @@ import com.google.gson.annotations.SerializedName
 data class ResponseData(
     @SerializedName("updated")
     @Expose
-    val updated: Long,
+    val updated: Long?,
     @SerializedName("country")
     @Expose
-    val country: String,
+    val country: String?,
     @SerializedName("countryInfo")
     @Expose
-    val countryInfo: CountryInfo,
+    val countryInfo: CountryInfo?,
     @SerializedName("cases")
     @Expose
-    val cases: Int,
+    val cases: Int?,
     @SerializedName("todayCases")
     @Expose
-    val todayCases: Int,
+    val todayCases: Int?,
     @SerializedName("deaths")
     @Expose
-    val deaths: Int,
+    val deaths: Int?,
     @SerializedName("todayDeaths")
     @Expose
-    val todayDeaths: Int,
+    val todayDeaths: Int?,
     @SerializedName("recovered")
     @Expose
-    val recovered: Int,
+    val recovered: Int?,
     @SerializedName("todayRecovered")
     @Expose
-    val todayRecovered: Int,
+    val todayRecovered: Int?,
     @SerializedName("active")
     @Expose
-    val active: Int,
+    val active: Int?,
     @SerializedName("critical")
     @Expose
-    val critical: Int,
+    val critical: Int?,
     @SerializedName("casesPerOneMillion")
     @Expose
-    val casesPerOneMillion: Float,
+    val casesPerOneMillion: Float?,
     @SerializedName("deathsPerOneMillion")
     @Expose
-    val deathsPerOneMillion: Float,
+    val deathsPerOneMillion: Float?,
     @SerializedName("tests")
     @Expose
-    val tests: Int,
+    val tests: Int?,
     @SerializedName("testsPerOneMillion")
     @Expose
-    val testsPerOneMillion: Float,
+    val testsPerOneMillion: Float?,
     @SerializedName("population")
     @Expose
-    val population: Int,
+    val population: Int?,
     @SerializedName("continent")
     @Expose
-    val continent: String,
+    val continent: String?,
     @SerializedName("oneCasePerPeople")
     @Expose
-    val oneCasePerPeople: Float,
+    val oneCasePerPeople: Float?,
     @SerializedName("oneDeathPerPeople")
     @Expose
-    val oneDeathPerPeople: Float,
+    val oneDeathPerPeople: Float?,
     @SerializedName("oneTestPerPeople")
     @Expose
-    val oneTestPerPeople: Float,
+    val oneTestPerPeople: Float?,
     @SerializedName("activePerOneMillion")
     @Expose
-    val activePerOneMillion: Double,
+    val activePerOneMillion: Double?,
     @SerializedName("recoveredPerOneMillion")
     @Expose
-    val recoveredPerOneMillion: Double,
+    val recoveredPerOneMillion: Double?,
     @SerializedName("criticalPerOneMillion")
     @Expose
     val criticalPerOneMillion: Double,
-    var percentage:Float?
+    var percentage: Float? = ((deaths?.toFloat())?.div((cases?.toFloat()!!)))
 )

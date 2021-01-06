@@ -1,23 +1,18 @@
 <resources>
     <string name="app_name">Covid19Project</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="text_splash_fragment">آمار به روز کرونا</string>
-    <string name="text_all_in_world">کل مبتلایان در جهان:</string>
-    <string name="text_deaths">تعداد مرگ ناشی از کرونا:</string>
-    <string name="text_recovered">بهبود یافتگان:</string>
+    <string name="text_all_in_world">مبتلاشدگان</string>
+    <string name="text_all_in_world_today">مبتلاشدگان امروز</string>
+    <string name="text_deaths">فوت شدگان</string>
+    <string name="text_deaths_today">فوت شدگان امروز</string>
     <string name="text_by_country">مشاهده براساس کشور</string>
-    <string name="text_recoverd">بهبودیافتگان</string>
-    <string name="text_death">مرگ</string>
-    <string name="text_all">کل مبتلایان</string>
-    <string name="text_country_name">نام کشور</string>
-    <string name="text_flag">نماد</string>
-    <string name="text_caught_today">مبتلایان امروز</string>
-    <string name="text_death_today">مرگ امروز</string>
-    <string name="text_recovered_today">بهبود امروز</string>
+    <string name="text_recovered">بهبودیافتگان</string>
+    <string name="text_recovered_today">بهبودیافتگان امروز</string>
     <string name="text_population">جمعیت</string>
-    <string name="text_oncaseperpeople">oneCasePerPeople</string>
     <string name="img_desc">flag of country</string>
     <string name="bg_desc">background about covid19 stats</string>
+    <string name="no_internet_alert_text">از اتصال اینترنت دستگاه اطمینان پیدا کنید</string>
+    <string name="internet_error">اینترنت متصل نیست</string>
 
 </resources>

@@ -11,7 +11,7 @@ import java.math.RoundingMode
 
 class CountryListAdapter(
     private val mContext: Context,
-    private var listCountry: MutableList<ResponseData>
+    private var listCountry: MutableList<ResponseData>?
 ) : RecyclerView.Adapter<CountryListAdapter.MyViewHolder>() {
 
 
@@ -22,25 +22,31 @@ class CountryListAdapter(
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val item=listCountry[position]
-        val allDeath=item.deaths
-        val allCaught=item.cases
-        val percentage:Float=(allDeath.toFloat()/allCaught.toFloat())* 100
-        holder.binding.tvAllCaught.text=allCaught.toString()
-        holder.binding.tvAllDeathItem.text=allDeath.toString()
-//        holder.binding.tvCaughtTodayItem.text=item.todayCases.toString()
-        holder.binding.tvCountryNameListItem.text=item.country
-//        holder.binding.tvDeathTodayItem.text=item.todayDeaths.toString()
-        Glide.with(mContext).load(item.countryInfo.flag).into(holder.binding.imgFlag)
-        holder.binding.tvDeathToAllCaughtPercentage.text="%${percentage.round(3)}"
+        val item= listCountry?.get(position)
+        holder.binding.apply {
+            item?.let {
+                val allDeath= it.deaths
+                val allCaught= it.cases
+                val percentage: Float = (allDeath?.toFloat()?.div(allCaught?.toFloat()!!))?.times(100) ?:0f
+                tvCountryNameListItem.text=it.country
+                tvDeathToAllCaughtPercentage.text = "%${percentage.round(3)}"
+                tvDeathItem.text=it.deaths.toString()
+                tvRecoveredItem.text=it.recovered.toString()
+                tvPopulationItem.text=it.population.toString()
+                tvAllCaught.text=it.cases.toString()
+            }
+        }
+        Glide.with(mContext).load(item?.countryInfo?.flag).into(holder.binding.imgFlag)
     }
 
     override fun getItemCount(): Int {
-        return listCountry.size
+        return listCountry?.size?:0
     }
-    fun setList(list: MutableList<ResponseData>) {
-        listCountry=list
+
+    fun setList(newList: MutableList<ResponseData>) {
+        listCountry=newList
     }
+
 
     class MyViewHolder(val binding: CountryItemBinding) :
         RecyclerView.ViewHolder(binding.root)
