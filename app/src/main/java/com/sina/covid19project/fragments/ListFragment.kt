@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
 import androidx.core.widget.addTextChangedListener
+import androidx.navigation.fragment.findNavController
+import com.pd.chocobar.ChocoBar
 import com.sina.covid19project.R
 import com.sina.covid19project.data.*
 import com.sina.covid19project.databinding.FragmentListBinding
@@ -34,7 +37,13 @@ class ListFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapterObj= CountryListAdapter(requireContext(),mList)
+        showProgressBar()
+        adapterObj= CountryListAdapter(requireContext(),mList,object:CountryListAdapter.ListItemListener{
+            override fun listenToCountryItem(country: String) {
+                findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailCountryFragment(country))
+            }
+
+        })
         getMinimumListOfCountryData()
         binding.etSearch.addTextChangedListener {
             mTextSearch=it.toString()
@@ -58,6 +67,9 @@ class ListFragment : Fragment() {
         }
     }
 
+    private fun showProgressBar() {
+        binding.pbLf.visibility=View.VISIBLE
+    }
 
 
     private fun getMinimumListOfCountryData() {
@@ -72,16 +84,26 @@ class ListFragment : Fragment() {
                 if (response.isSuccessful) {
                     mList=response.body()!!
                     setupRecyclerViewWithThisList()
+
                 }
             }
 
             override fun onFailure(call: Call<MutableList<ResponseData>>, t: Throwable) {
                 Log.e("ListFragment", "onFailure:$t ",)
+                showSnackBar()
+
 
             }
         })
 
 
+    }
+    fun showSnackBar() {
+        ChocoBar.builder().setActivity(requireActivity())
+            .setDuration(ChocoBar.LENGTH_LONG)
+            .setText("اینترنت متصل نیست")
+            .red()
+            .show()
     }
 
     private fun setupRecyclerViewWithThisList() {
@@ -104,6 +126,19 @@ class ListFragment : Fragment() {
                 Log.e(TAG, "setupRecyclerViewWithThisList: SortMode is Default", )}
         }
         adapterObj.setList(newList)
+        hideProgressBar()
+        unhideRv()
+//        val anim:Animation
+//        binding.rvCountries.animation=anim
         binding.rvCountries.adapter=adapterObj
     }
+
+    private fun unhideRv() {
+        binding.rvCountries.visibility=View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        binding.pbLf.visibility=View.GONE
+    }
+
 }

@@ -10,8 +10,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.google.gson.JsonObject
+import com.pd.chocobar.ChocoBar
 import com.sina.covid19project.R
 import com.sina.covid19project.data.ApiClient
 import com.sina.covid19project.data.ApiInterface
@@ -26,6 +28,8 @@ import java.util.*
 class HomeFragment : Fragment() {
     companion object{
         const val TAG="HomeFragment"
+
+
     }
     lateinit var mSharedPref:SharedPreferences
     lateinit var binding: FragmentHomeBinding
@@ -35,12 +39,13 @@ class HomeFragment : Fragment() {
      var todayCases:String?=null
      var todayDeath:String?=null
      var todayRecovered:String?=null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding= FragmentHomeBinding.inflate(inflater)
+        binding= com.sina.covid19project.databinding.FragmentHomeBinding.inflate(inflater)
         return binding.root
     }
 
@@ -48,7 +53,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mSharedPref=requireActivity().getPreferences(MODE_PRIVATE)
         getLiveCovid19Data()
-
+        binding.imgRefreshHf.setOnClickListener {
+            getLiveCovid19Data()
+        }
         binding.tvByCountry.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_listFragment)
         }
@@ -68,24 +75,44 @@ class HomeFragment : Fragment() {
                     response.body()?.let {
                         cases = it["cases"].asString
                         deaths = it["deaths"].asString
-                        recovered=it["recovered"].asString
-                        todayCases=it["todayCases"].asString
-                        todayDeath=it["todayDeaths"].asString
-                        todayRecovered=it["todayRecovered"].asString
+                        recovered = it["recovered"].asString
+                        todayCases = it["todayCases"].asString
+                        todayDeath = it["todayDeaths"].asString
+                        todayRecovered = it["todayRecovered"].asString
+
                         writeDataToSharedPref()
                         setTakenDataToView()
                         setLastUpdatedTime()
+                        hideAlertNoInternet()
                     }
                 }
             }
+
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                 setDatawithSharedPref()
                 setTakenDataToView()
-                binding.tvDate.text=mSharedPref.getString("date",getString(R.string.internet_error))
+                binding.tvDate.text =
+                    mSharedPref.getString("date", getString(R.string.internet_error))
+                binding.tvAlertNoInternet.visibility = View.VISIBLE
+
+                binding.viewBigToolbar.background=ContextCompat.getDrawable(requireContext(),R.drawable.ic_pandemic__converted_redbg)
+                showSnackBarRed()
                 Log.e(TAG, "onFailure: ${t.message}",)
             }
 
         })
+    }
+
+    private fun hideAlertNoInternet() {
+        binding.tvAlertNoInternet.visibility=View.GONE
+    }
+
+    fun showSnackBarRed() {
+        ChocoBar.builder().setActivity(requireActivity())
+            .setDuration(ChocoBar.LENGTH_LONG)
+            .setText("اینترنت متصل نیست")
+            .red()
+            .show()
     }
 
     private fun writeDataToSharedPref() {
@@ -102,8 +129,18 @@ class HomeFragment : Fragment() {
     private fun setLastUpdatedTime() {
         val date=Date().time.reformat()
         binding.tvDate.text= date
+        showSnackBarGreen(date)
         //save date in sharedPref
         mSharedPref.edit().putString("date",date).apply()
+
+    }
+
+    private fun showSnackBarGreen(date:String) {
+        ChocoBar.builder().setActivity(requireActivity())
+            .setDuration(ChocoBar.LENGTH_SHORT)
+            .setText(date)
+            .green()
+            .show()
     }
 
     private fun setDatawithSharedPref() {
@@ -117,13 +154,15 @@ class HomeFragment : Fragment() {
 
 
     private fun setTakenDataToView() {
-        binding.run {
+        binding.apply {
             tvShowCases.text=cases
             tvCasesTodayHf.text=todayCases
             tvDeathAll.text=deaths
             tvDeathToday.text=todayDeath
             tvShowRecovered.text=recovered
             tvRecoveredToday.text=todayRecovered
+            viewBigToolbar.background=ContextCompat.getDrawable(requireContext(),R.drawable.ic_pandemic__converted_)
+
         }
     }
 

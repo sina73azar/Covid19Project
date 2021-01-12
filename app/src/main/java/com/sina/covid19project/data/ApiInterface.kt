@@ -11,5 +11,7 @@ interface ApiInterface {
     fun getMainMessage():Call<JsonObject>
     @GET("countries")
     fun getAllCountries():Call<MutableList<ResponseData>>
+    @GET("countries/{country}")
+    fun getSpecificCountry(@Path("country")countryName:String):Call<ResponseCountry>
 
 }

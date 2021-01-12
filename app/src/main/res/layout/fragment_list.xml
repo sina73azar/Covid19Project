@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ListFragment">
+    tools:context=".fragments.ListFragment"
+    android:animateLayoutChanges="true">
 
 
     <EditText
@@ -100,6 +101,18 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_z_to_a" />
 
+    <ProgressBar
+
+        style="?android:attr/progressBarStyle"
+        android:id="@+id/pb_lf"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        tools:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/rv_countries"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_population_lf" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_countries"
         android:layout_width="0dp"
@@ -111,6 +124,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

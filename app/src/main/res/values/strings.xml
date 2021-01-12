@@ -14,5 +14,21 @@
     <string name="bg_desc">background about covid19 stats</string>
     <string name="no_internet_alert_text">از اتصال اینترنت دستگاه اطمینان پیدا کنید</string>
     <string name="internet_error">اینترنت متصل نیست</string>
+    <string name="last_update">آخرین بروزرسانی:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="updated_source">تعداد بروزرسانی منبع</string>
+    <string name="continent">قاره</string>
+    <string name="mavared_ebtela">موارد ابتلا</string>
+    <string name="all">کل</string>
+    <string name="today">امروز</string>
+    <string name="critical">وضعیت وخیم</string>
+    <string name="one_per_million">ازهریک میلیون نفر</string>
+    <string name="one_per_people">یک مورد ابتلا از هر</string>
+    <string name="registered_tests">تست های ثبت شده</string>
+    <string name="mavared_death">موارد فوت</string>
+    <string name="mavared_recovered"> موارد بهبود</string>
+    <string name="cases_per_population_st">درصدابتلا نسبت به جمعیت </string>
+    <string name="tests_per_population_st">درصد تست گرفتن نسبت به جمعیت </string>
 
 </resources>

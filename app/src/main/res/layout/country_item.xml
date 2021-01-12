@@ -6,12 +6,14 @@
     android:layout_height="wrap_content">
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/view_overall"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/shape_bg_item_list"
         android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:padding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,69 +29,70 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/m_green_6"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="@+id/view_overall"
+        app:layout_constraintEnd_toEndOf="@+id/view_overall"
         app:layout_constraintStart_toEndOf="@+id/img_flag"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintTop_toTopOf="@+id/view_overall" />
 
     <ImageView
         android:id="@+id/img_flag"
-        android:layout_width="140dp"
-        android:layout_height="80dp"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+
+
+        android:layout_marginTop="5dp"
 
         android:adjustViewBounds="true"
-
-
-        app:layout_constraintStart_toStartOf="@id/view"
-        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintDimensionRatio="w,2:1"
+        app:layout_constraintEnd_toStartOf="@+id/view8"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="@id/view_overall"
+        app:layout_constraintTop_toTopOf="@+id/view_overall"
         app:srcCompat="@drawable/covid_earth" />
 
     <TextView
         android:id="@+id/tv_country_name_list_item"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/samim"
-        android:inputType="text"
+
         android:lines="1"
         android:paddingStart="3dp"
         android:paddingTop="1dp"
+        android:paddingEnd="3dp"
         android:paddingBottom="1dp"
-        android:text="Argentina"
         android:textAlignment="center"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tv_death_to_all_caught_percentage"
         app:layout_constraintEnd_toEndOf="@+id/img_flag"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/img_flag"
-        app:layout_constraintTop_toBottomOf="@+id/img_flag" />
+        app:layout_constraintTop_toBottomOf="@+id/img_flag"
+        app:layout_constraintVertical_bias="0.45"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:text="Argentina" />
 
     <TextView
         android:id="@+id/tv_death_to_all_caught_percentage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="8dp"
         android:fontFamily="@font/samim_number"
-        android:paddingStart="3dp"
-        android:paddingTop="1dp"
         android:paddingBottom="1dp"
-        android:text="2.53%"
         android:textAlignment="center"
         android:textColor="?attr/colorPrimaryVariant"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_overall"
         app:layout_constraintEnd_toEndOf="@+id/tv_country_name_list_item"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/tv_country_name_list_item"
-        app:layout_constraintTop_toBottomOf="@+id/tv_country_name_list_item" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_country_name_list_item"
+        tools:text="2.53%" />
 
     <TextView
         android:id="@+id/tv_st_cases_item"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/samim"
         android:padding="3dp"
         android:text="@string/text_all_in_world"
         android:textAlignment="center"
@@ -107,23 +110,23 @@
         android:layout_height="wrap_content"
 
         android:fontFamily="@font/samim_number"
-        android:text="88545111215"
-
         android:textAlignment="center"
 
         android:textAllCaps="false"
+
         android:textColor="?attr/colorPrimaryVariant"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_st_deaths_item"
         app:layout_constraintEnd_toEndOf="@+id/view8"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_population_item"
-        app:layout_constraintTop_toBottomOf="@+id/tv_st_cases_item" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_st_cases_item"
+        tools:text="88545111215" />
 
     <TextView
         android:id="@+id/tv_st_deaths_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/samim"
 
         android:text="@string/text_deaths"
         android:textAlignment="center"
@@ -140,21 +143,21 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/samim_number"
-        android:text="121456562"
         android:textAlignment="center"
         android:textColor="?attr/colorPrimaryVariant"
+        android:textSize="12sp"
 
         app:layout_constraintBottom_toBottomOf="@+id/view8"
         app:layout_constraintEnd_toEndOf="@+id/view8"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_recovered_item"
-        app:layout_constraintTop_toBottomOf="@+id/tv_st_deaths_item" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_st_deaths_item"
+        tools:text="121456562" />
 
     <TextView
         android:id="@+id/tv_st_population_item"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/samim"
         android:padding="3dp"
         android:text="@string/text_population"
         android:textAlignment="center"
@@ -173,11 +176,12 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/samim_number"
         android:gravity="center"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_st_recovered_item"
         app:layout_constraintEnd_toStartOf="@+id/tv_all_caught"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
 
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="@+id/view8"
         app:layout_constraintTop_toBottomOf="@+id/tv_st_population_item"
         tools:text="45487451" />
@@ -186,7 +190,6 @@
         android:id="@+id/tv_st_recovered_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/samim"
         android:text="@string/text_recovered"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_recovered_item"
@@ -200,15 +203,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/samim_number"
-        android:text="5451215"
         android:textAlignment="center"
+        android:textSize="12sp"
 
         app:layout_constraintBottom_toBottomOf="@+id/view8"
         app:layout_constraintEnd_toStartOf="@+id/tv_death_item"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/view8"
-        app:layout_constraintTop_toBottomOf="@+id/tv_st_recovered_item" />
-
+        app:layout_constraintTop_toBottomOf="@+id/tv_st_recovered_item"
+        tools:text="5451215" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
