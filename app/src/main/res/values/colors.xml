@@ -23,5 +23,22 @@
     <color name="color_text_death">#CD1E1E</color>
     <color name="color_text_recovered">#218E03</color>
 
+    //material earth
+    <color name="blue_earth_50">#e9e9f6</color>
+    <color name="blue_earth_100">#c8c9e8</color>
+    <color name="blue_earth_200">#a4a6d8</color>
+    <color name="blue_earth_300">#8083c8</color>
+    <color name="blue_earth_500">#4f4cb0</color>
+    <color name="blue_earth_700">#413a9a</color>
+    <color name="blue_earth_800">#3a308e</color>
+    <color name="blue_earth_900">#2d1d79</color>
 
+    <color name="green_earth_50">#f1f6e8</color>
+    <color name="green_earth_100">#dce9c7</color>
+    <color name="green_earth_200">#c6daa3</color>
+    <color name="green_earth_300">#b0cb7f</color>
+    <color name="green_earth_400">#9fc164</color>
+    <color name="green_earth_600">#80a742</color>
+    <color name="green_earth_700">#6d9439</color>
+    <color name="green_earth_900">#395f1f</color>
 </resources>

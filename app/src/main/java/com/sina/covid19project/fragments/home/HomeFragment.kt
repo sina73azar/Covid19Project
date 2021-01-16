@@ -1,4 +1,4 @@
-package com.sina.covid19project.fragments
+package com.sina.covid19project.fragments.home
 
 
 import android.annotation.SuppressLint
@@ -15,8 +15,8 @@ import androidx.navigation.fragment.findNavController
 import com.google.gson.JsonObject
 import com.pd.chocobar.ChocoBar
 import com.sina.covid19project.R
-import com.sina.covid19project.data.ApiClient
-import com.sina.covid19project.data.ApiInterface
+import com.sina.covid19project.data.network.ApiClient
+import com.sina.covid19project.data.network.ApiInterface
 import com.sina.covid19project.databinding.FragmentHomeBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -94,8 +94,7 @@ class HomeFragment : Fragment() {
                 binding.tvDate.text =
                     mSharedPref.getString("date", getString(R.string.internet_error))
                 binding.tvAlertNoInternet.visibility = View.VISIBLE
-
-                binding.viewBigToolbar.background=ContextCompat.getDrawable(requireContext(),R.drawable.ic_pandemic__converted_redbg)
+//                binding.viewBigToolbar.background=ContextCompat.getDrawable(requireContext(),R.drawable.ic_pandemic__converted_redbg)
                 showSnackBarRed()
                 Log.e(TAG, "onFailure: ${t.message}",)
             }
@@ -161,7 +160,7 @@ class HomeFragment : Fragment() {
             tvDeathToday.text=todayDeath
             tvShowRecovered.text=recovered
             tvRecoveredToday.text=todayRecovered
-            viewBigToolbar.background=ContextCompat.getDrawable(requireContext(),R.drawable.ic_pandemic__converted_)
+//            viewBigToolbar.background=ContextCompat.getDrawable(requireContext(),R.drawable.ic_pandemic__converted_)
 
         }
     }

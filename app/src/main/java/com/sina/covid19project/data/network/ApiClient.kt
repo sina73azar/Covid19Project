@@ -1,4 +1,4 @@
-package com.sina.covid19project.data
+package com.sina.covid19project.data.network
 
 import android.util.Log
 import com.ihsanbal.logging.Level

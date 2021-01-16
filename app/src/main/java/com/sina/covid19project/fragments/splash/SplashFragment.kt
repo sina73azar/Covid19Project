@@ -1,4 +1,4 @@
-package com.sina.covid19project.fragments
+package com.sina.covid19project.fragments.splash
 
 
 import android.content.pm.PackageManager
@@ -6,18 +6,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.view.Display
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.sina.covid19project.R
-import com.sina.covid19project.data.ApiClient
-import com.sina.covid19project.data.ApiInterface
 
 
 class SplashFragment : Fragment() {

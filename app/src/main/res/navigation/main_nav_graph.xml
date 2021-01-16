@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.sina.covid19project.fragments.SplashFragment"
+        android:name="com.sina.covid19project.fragments.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.sina.covid19project.fragments.HomeFragment"
+        android:name="com.sina.covid19project.fragments.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.sina.covid19project.fragments.ListFragment"
+        android:name="com.sina.covid19project.fragments.list_country.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" >
         <action
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailCountryFragment"
-        android:name="com.sina.covid19project.fragments.DetailCountryFragment"
+        android:name="com.sina.covid19project.fragments.list_country.detail.DetailCountryFragment"
         android:label="fragment_detail_country"
         tools:layout="@layout/fragment_detail_country" >
         <argument

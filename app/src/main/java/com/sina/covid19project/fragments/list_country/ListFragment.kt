@@ -1,4 +1,4 @@
-package com.sina.covid19project.fragments
+package com.sina.covid19project.fragments.list_country
 
 import android.os.Bundle
 import android.util.Log
@@ -6,13 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.pd.chocobar.ChocoBar
-import com.sina.covid19project.R
-import com.sina.covid19project.data.*
+import com.sina.covid19project.data.data_model.ResponseData
+import com.sina.covid19project.data.network.ApiClient
+import com.sina.covid19project.data.network.ApiInterface
 import com.sina.covid19project.databinding.FragmentListBinding
+
+import com.sina.covid19project.utils.SortMode
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,7 +24,7 @@ class ListFragment : Fragment() {
     lateinit var binding:FragmentListBinding
     lateinit var adapterObj:CountryListAdapter
     var mList:MutableList<ResponseData>?=null
-    var mSortMode:SortMode=SortMode.DEFAULT
+    var mSortMode: SortMode = SortMode.DEFAULT
     var mTextSearch:String=""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +42,11 @@ class ListFragment : Fragment() {
         showProgressBar()
         adapterObj= CountryListAdapter(requireContext(),mList,object:CountryListAdapter.ListItemListener{
             override fun listenToCountryItem(country: String) {
-                findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailCountryFragment(country))
+                findNavController().navigate(
+                    ListFragmentDirections.actionListFragmentToDetailCountryFragment(
+                        country
+                    )
+                )
             }
 
         })
@@ -50,19 +56,19 @@ class ListFragment : Fragment() {
             getMinimumListOfCountryData()
         }
         binding.tvPopulationLf.setOnClickListener {
-            mSortMode=SortMode.POPULATION
+            mSortMode= SortMode.POPULATION
             getMinimumListOfCountryData()
         }
         binding.tvHighestCaught.setOnClickListener {
-            mSortMode=SortMode.CASES
+            mSortMode= SortMode.CASES
             getMinimumListOfCountryData()
         }
         binding.tvZToA.setOnClickListener {
-            mSortMode=SortMode.Z_TO_A
+            mSortMode= SortMode.Z_TO_A
             getMinimumListOfCountryData()
         }
         binding.tvHighestPercentage.setOnClickListener {
-            mSortMode=SortMode.PERCENTAGE
+            mSortMode= SortMode.PERCENTAGE
             getMinimumListOfCountryData()
         }
     }

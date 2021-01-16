@@ -1,4 +1,4 @@
-package com.sina.covid19project.data
+package com.sina.covid19project.data.data_model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

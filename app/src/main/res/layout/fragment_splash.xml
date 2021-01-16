@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SplashFragment">
+    tools:context=".fragments.splash.SplashFragment">
 
     <ImageView
         android:id="@+id/imageView"
@@ -23,7 +23,6 @@
 
         android:text="@string/text_splash_fragment"
         android:textAlignment="center"
-        android:textColor="?attr/colorPrimaryVariant"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/progress_bar_splash"

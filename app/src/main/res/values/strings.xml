@@ -30,5 +30,7 @@
     <string name="mavared_recovered"> موارد بهبود</string>
     <string name="cases_per_population_st">درصدابتلا نسبت به جمعیت </string>
     <string name="tests_per_population_st">درصد تست گرفتن نسبت به جمعیت </string>
+    <string name="flag_of_country">flag of country</string>
+
 
 </resources>

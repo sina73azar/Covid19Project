@@ -1,17 +1,13 @@
-package com.sina.covid19project.data
+package com.sina.covid19project.fragments.list_country
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.OrientationEventListener
-import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.sina.covid19project.data.data_model.ResponseData
 import com.sina.covid19project.databinding.CountryItemBinding
-import com.sina.covid19project.fragments.ListFragment
-import com.sina.covid19project.fragments.ListFragmentDirections
 import java.math.RoundingMode
 
 class CountryListAdapter(
