@@ -2,11 +2,12 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
+    android:id="@+id/coordiantor_"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:fitsSystemWindows="true"
+
     tools:context=".fragments.list_country.detail.DetailCountryFragment">
 
 
@@ -20,7 +21,7 @@
             android:id="@+id/collapse_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="?attr/colorOnPrimary"
+            android:background="@color/white"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.appcompat.widget.Toolbar
@@ -29,115 +30,131 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:animateLayoutChanges="true"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="2dp">
 
-                <ImageView
-                    android:id="@+id/img_flag"
-                    android:layout_width="0dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:fadingEdgeLength="10dp">
 
-                    android:fitsSystemWindows="true"
-                    app:layout_collapseMode="parallax"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/img_flag"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
 
-                <TextView
-                    android:id="@+id/tv_continent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:gravity="end|center_vertical"
-                    android:paddingHorizontal="3dp"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView8"
-                    app:layout_constraintEnd_toStartOf="@+id/textView8"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_weight="1.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView30"
-                    app:layout_constraintTop_toTopOf="@+id/textView8"
-                    tools:text="Asia" />
+                        android:fitsSystemWindows="true"
+                        app:layout_collapseMode="parallax"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/textView8"
-                    style="@style/style_tv_st_df"
-                    android:layout_width="wrap_content"
-                    android:layout_height="56dp"
-                    android:gravity="center"
-                    android:hint="@string/continent"
-                    android:paddingStart="3dp"
-                    android:paddingEnd="3dp"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_weight="0.8"
-                    app:layout_constraintStart_toEndOf="@+id/tv_continent"
-                    app:layout_constraintTop_toBottomOf="@id/img_flag" />
+                    <TextView
+                        android:id="@+id/tv_continent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:gravity="end|center_vertical"
+                        android:paddingHorizontal="3dp"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                        app:layout_constraintEnd_toStartOf="@+id/textView8"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_weight="1.5"
+                        app:layout_constraintStart_toEndOf="@+id/textView30"
+                        app:layout_constraintTop_toTopOf="@+id/textView8"
+                        tools:text="Asia" />
 
-                <TextView
-                    android:id="@+id/tv_country_name"
-                    android:layout_width="0dp"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="@color/m_green_4"
-                    android:gravity="center"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_continent"
-                    tools:text="Iran" />
+                    <TextView
+                        android:id="@+id/textView8"
+                        style="@style/style_tv_st_df"
+                        android:layout_width="wrap_content"
+                        android:layout_height="56dp"
+                        android:gravity="center"
+                        android:hint="@string/continent"
+                        android:paddingStart="3dp"
+                        android:paddingEnd="3dp"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_weight="0.8"
+                        app:layout_constraintStart_toEndOf="@+id/tv_continent"
+                        app:layout_constraintTop_toBottomOf="@id/img_flag" />
 
-                <TextView
-                    android:id="@+id/textView30"
-                    style="@style/style_tv_st_df"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:gravity="center"
-                    android:hint="@string/text_population"
-                    android:paddingStart="3dp"
-                    android:paddingEnd="3dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_continent"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_continent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintStart_toEndOf="@+id/tv_population"
-                    app:layout_constraintTop_toTopOf="@+id/tv_continent" />
+                    <TextView
+                        android:id="@+id/tv_country_name"
+                        android:layout_width="0dp"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@color/blue_earth_500"
+                        android:elevation="10dp"
+                        android:fadingEdgeLength="5dp"
+                        android:gravity="center"
+                        android:textColor="@android:color/white"
+                        android:textIsSelectable="true"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_continent"
+                        tools:text="Iran" />
 
-                <TextView
-                    android:id="@+id/tv_population"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:gravity="center|end"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView30"
-                    app:layout_constraintEnd_toStartOf="@+id/textView30"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_weight="2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView30"
-                    tools:text="54121645" />
+                    <TextView
+                        android:id="@+id/textView30"
+                        style="@style/style_tv_st_df"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:gravity="center"
+                        android:hint="@string/text_population"
+                        android:paddingStart="3dp"
+                        android:paddingEnd="3dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_continent"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_continent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/tv_population"
+                        app:layout_constraintTop_toTopOf="@+id/tv_continent" />
 
-                <androidx.constraintlayout.helper.widget.Flow
-                    android:id="@+id/flow"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:constraint_referenced_ids="tv_population,textView30,tv_continent,textView8,tv_country_name"
-                    app:flow_horizontalGap="15dp"
-                    app:flow_horizontalStyle="packed"
-                    app:flow_maxElementsWrap="4"
-                    app:flow_wrapMode="chain"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/img_flag" />
+                    <TextView
+                        android:id="@+id/tv_population"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:gravity="center|end"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView30"
+                        app:layout_constraintEnd_toStartOf="@+id/textView30"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_weight="2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView30"
+                        tools:text="54121645" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.helper.widget.Flow
+                        android:id="@+id/flow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:orientation="horizontal"
+                        app:constraint_referenced_ids="tv_population,textView30,tv_continent,textView8,tv_country_name"
+                        app:flow_horizontalGap="15dp"
+                        app:flow_horizontalStyle="packed"
+                        app:flow_lastHorizontalStyle="spread"
+                        app:flow_maxElementsWrap="4"
+                        app:flow_wrapMode="chain"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/img_flag" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -162,14 +179,28 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:visibility="gone" />
 
+            <com.sina.covid19project.utils.CustomTextView
+                android:id="@+id/ctv_all_cases2"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view12"
+                app:textAfter="کل" />
+
             <View
                 android:id="@+id/view"
                 android:layout_width="0dp"
                 android:layout_height="300dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/shape_bg_item_list"
+                android:background="@drawable/shape_bg_btn"
+                android:elevation="10dp"
+                android:fadingEdgeLength="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/view10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -178,11 +209,13 @@
             <View
                 android:id="@+id/view10"
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="300dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/shape_bg_item_list"
+                android:background="@drawable/shape_bg_btn"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/view11"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -193,9 +226,11 @@
                 android:layout_width="0dp"
                 android:layout_height="300dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/shape_bg_item_list"
+                android:background="@drawable/shape_bg_btn"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/view12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -204,11 +239,13 @@
             <View
                 android:id="@+id/view12"
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="300dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/shape_bg_item_list"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shape_bg_btn"
+                android:elevation="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -218,42 +255,66 @@
             <TextView
                 android:id="@+id/tv_mavared_ebtela_st"
                 style="@style/style_tv_title_df"
+                android:layout_width="0dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/shape_st_titles_df"
+                android:elevation="20dp"
                 android:text="@string/mavared_ebtela"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toTopOf="@+id/view"
                 app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintStart_toStartOf="@+id/view"
                 app:layout_constraintTop_toTopOf="@+id/view" />
 
             <TextView
                 android:id="@+id/textView2"
                 style="@style/style_tv_title_df"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/shape_st_titles_df"
+                android:elevation="20dp"
                 android:text="@string/registered_tests"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toTopOf="@+id/view10"
                 app:layout_constraintEnd_toEndOf="@+id/view10"
+                app:layout_constraintStart_toStartOf="@+id/view10"
                 app:layout_constraintTop_toTopOf="@+id/view10" />
 
             <TextView
                 android:id="@+id/textView4"
                 style="@style/style_tv_title_df"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/shape_st_titles_df"
+                android:elevation="20dp"
                 android:text="@string/mavared_death"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toTopOf="@+id/view11"
                 app:layout_constraintEnd_toEndOf="@+id/view11"
+                app:layout_constraintStart_toStartOf="@+id/view11"
                 app:layout_constraintTop_toTopOf="@+id/view11" />
 
             <TextView
                 android:id="@+id/textView5"
                 style="@style/style_tv_title_df"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/shape_st_titles_df"
+
+                android:elevation="20dp"
                 android:text="@string/mavared_recovered"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toTopOf="@+id/view12"
                 app:layout_constraintEnd_toEndOf="@id/view12"
-                app:layout_constraintTop_toTopOf="@id/view12"
-
-                />
+                app:layout_constraintStart_toStartOf="@+id/view12"
+                app:layout_constraintTop_toTopOf="@id/view12" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -261,6 +322,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:elevation="12dp"
                 android:text="@string/all"
                 app:autoSizeMaxTextSize="16sp"
                 app:autoSizeMinTextSize="12sp"
@@ -274,6 +336,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginEnd="16dp"
+                android:elevation="12dp"
                 android:text="@string/today"
                 app:layout_constraintBottom_toTopOf="@+id/textView9"
                 app:layout_constraintEnd_toEndOf="@+id/view"
@@ -285,6 +348,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginEnd="16dp"
+                android:elevation="12dp"
                 android:text="@string/critical"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toTopOf="@+id/textView10"
@@ -297,6 +361,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginEnd="16dp"
+                android:elevation="12dp"
                 android:text="@string/one_per_million"
                 app:layout_constraintBottom_toTopOf="@+id/textView13"
                 app:layout_constraintEnd_toEndOf="@+id/view"
@@ -308,6 +373,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginEnd="16dp"
+                android:elevation="12dp"
                 android:text="@string/one_per_people"
                 app:layout_constraintBottom_toBottomOf="@+id/view"
                 app:layout_constraintEnd_toEndOf="@+id/view"
@@ -319,6 +385,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginEnd="16dp"
+                android:elevation="12dp"
                 android:text="@string/cases_per_population_st"
                 app:layout_constraintBottom_toTopOf="@+id/textView12"
                 app:layout_constraintEnd_toEndOf="@+id/view"
@@ -327,6 +394,7 @@
             <TextView
                 android:id="@+id/textView14"
                 style="@style/style_tv_numbers"
+                android:elevation="12dp"
                 android:text="..."
                 app:layout_constraintBottom_toBottomOf="@+id/textView6"
                 app:layout_constraintEnd_toStartOf="@+id/textView6"
@@ -338,6 +406,7 @@
                 style="@style/style_tv_numbers"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:elevation="12dp"
                 android:text="..."
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="@+id/textView9"
@@ -346,9 +415,10 @@
                 app:layout_constraintTop_toTopOf="@+id/textView9" />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/tv_today_data"
                 style="@style/style_tv_numbers"
                 android:layout_width="0dp"
+                android:elevation="12dp"
                 android:text="..."
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_today_st_df"
@@ -357,10 +427,11 @@
                 app:layout_constraintTop_toTopOf="@+id/tv_today_st_df" />
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/tv_per_one_mil_data"
                 style="@style/style_tv_numbers"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:elevation="12dp"
                 android:text="..."
                 app:layout_constraintBottom_toBottomOf="@+id/textView10"
                 app:layout_constraintEnd_toStartOf="@+id/textView10"
@@ -372,6 +443,7 @@
                 style="@style/style_tv_numbers"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:elevation="12dp"
                 android:text="..."
                 app:layout_constraintBottom_toBottomOf="@+id/textView13"
                 app:layout_constraintEnd_toStartOf="@+id/textView13"
@@ -383,6 +455,7 @@
                 style="@style/style_tv_numbers"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:elevation="12dp"
                 android:text="..."
                 app:layout_constraintBottom_toBottomOf="@+id/textView12"
                 app:layout_constraintEnd_toStartOf="@+id/textView12"
@@ -396,6 +469,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:elevation="12dp"
                 android:text="@string/all"
                 app:layout_constraintBottom_toTopOf="@+id/textView21"
                 app:layout_constraintEnd_toEndOf="@+id/view10"
@@ -406,6 +480,7 @@
                 style="@style/style_tv_st_df"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:elevation="12dp"
                 android:text="@string/one_per_million"
                 app:layout_constraintBottom_toTopOf="@+id/textView22"
                 app:layout_constraintEnd_toEndOf="@+id/textView20"
@@ -416,6 +491,7 @@
                 style="@style/style_tv_st_df"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:elevation="12dp"
                 android:text="@string/one_per_people"
                 app:layout_constraintBottom_toTopOf="@+id/textView23"
                 app:layout_constraintEnd_toEndOf="@+id/textView21"
@@ -426,6 +502,7 @@
                 style="@style/style_tv_st_df"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:elevation="12dp"
                 android:text="@string/tests_per_population_st"
                 app:layout_constraintBottom_toBottomOf="@+id/view10"
                 app:layout_constraintEnd_toEndOf="@+id/textView22"
@@ -436,6 +513,7 @@
                 style="@style/style_tv_numbers"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:elevation="12dp"
                 android:text="..."
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="@+id/textView20"
@@ -448,6 +526,7 @@
                 style="@style/style_tv_numbers"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:elevation="12dp"
                 android:text="..."
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="@+id/textView21"
@@ -460,6 +539,7 @@
                 style="@style/style_tv_numbers"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:elevation="12dp"
                 android:text="..."
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="@+id/textView22"
@@ -472,27 +552,13 @@
                 style="@style/style_tv_numbers"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:elevation="12dp"
                 android:text="..."
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="@+id/textView23"
                 app:layout_constraintEnd_toStartOf="@+id/textView23"
                 app:layout_constraintStart_toStartOf="@+id/view10"
                 app:layout_constraintTop_toTopOf="@+id/textView23" />
-
-            <androidx.constraintlayout.widget.Group
-                android:id="@+id/group_details_fragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                tools:visibility="visible"
-                app:constraint_referenced_ids="view,view10,view11,
-                view12,tv_mavared_ebtela_st,textView2,textView4,
-                textView5,textView6,tv_today_st_df,textView9,
-                textView10,textView12,textView13,textView14,
-                textView15,textView16,textView17,textView18,
-                textView19,textView20,textView21,textView22,
-                textView23,textView24,textView25,textView26,
-                textView27" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

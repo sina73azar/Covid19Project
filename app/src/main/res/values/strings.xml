@@ -32,5 +32,6 @@
     <string name="tests_per_population_st">درصد تست گرفتن نسبت به جمعیت </string>
     <string name="flag_of_country">flag of country</string>
 
+    <string name="tv_all_">"کل : %s"</string>
 
 </resources>

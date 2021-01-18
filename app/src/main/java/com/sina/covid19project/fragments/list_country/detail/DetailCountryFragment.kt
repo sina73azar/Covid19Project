@@ -1,17 +1,26 @@
 package com.sina.covid19project.fragments.list_country.detail
 
-import android.graphics.Color
+
+import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
+import com.google.android.material.appbar.AppBarLayout
+import com.sina.covid19project.R
+
 import com.sina.covid19project.data.network.ApiClient
 import com.sina.covid19project.data.network.ApiInterface
 import com.sina.covid19project.data.data_model.ResponseCountry
 import com.sina.covid19project.databinding.FragmentDetailCountryBinding
+import com.sina.covid19project.utils.CustomTextView
+import kotlinx.android.synthetic.main.fragment_detail_country.view.*
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,16 +43,32 @@ class DetailCountryFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //get country name from list fragment
-        val countryName = DetailCountryFragmentArgs.fromBundle(requireArguments()).countryName ?: "iran"
-
-
-//        binding.toolbarDf.setBackgroundColor(Color.YELLOW)
+        val countryName =
+            DetailCountryFragmentArgs.fromBundle(requireArguments()).countryName
         binding.tvCountryName.text = countryName
+        fillCustomTextView()
+        binding.appBarLayout.addOnOffsetChangedListener(object :
+            AppBarLayout.OnOffsetChangedListener {
+            override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
+                Log.e(TAG, "onOffsetChanged: $verticalOffset", )
+            }
+
+        })
         getSpecificCountryData(countryName)
+        
     }
+
+
+    @SuppressLint("SetTextI18n")
+    private fun fillCustomTextView() {
+
+
+    }
+
 
     private fun getSpecificCountryData(countryName: String) {
         val apiInterface = ApiClient.client.create(ApiInterface::class.java)
@@ -72,18 +97,18 @@ class DetailCountryFragment : Fragment() {
             val flagUrl = it.flag
             flagUrl?.let { loadImageFlag(it) }
         }
-        binding.tvContinent.text=countryObj?.continent
-        binding.tvPopulation.text=countryObj?.population.toString()
-        setGroupVisible()
+        binding.tvContinent.text = countryObj?.continent
+        binding.tvPopulation.text = countryObj?.population.toString()
         setPgGone()
+//        setGroupVisible()
     }
 
     private fun setPgGone() {
-        binding.pbDetailCountry.visibility=View.GONE
+        binding.pbDetailCountry.visibility = View.GONE
     }
 
     private fun setGroupVisible() {
-        binding.groupDetailsFragment.visibility=View.VISIBLE
+//        binding.groupDetailsFragment.visibility=View.VISIBLE
     }
 
     private fun loadImageFlag(url: String) {

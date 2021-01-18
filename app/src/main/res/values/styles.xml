@@ -29,5 +29,20 @@
         <item name="android:paddingStart">10dp</item>
         <item name="android:textAlignment">center</item>
     </style>
-
+    <style name="ShapeAppearance.MyApp" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+    <style name="style_text_1">
+        <item name="fontFamily">@font/b_yaghut</item>
+        <item name="android:textColor">@color/blue_earth_900</item>
+    </style>
+    <style name="style_text_2">
+        <item name="fontFamily">@font/b_yaghut_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="style_numbers">
+        <item name="fontFamily">@font/samim_number</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

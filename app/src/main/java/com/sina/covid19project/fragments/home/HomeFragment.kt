@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding= com.sina.covid19project.databinding.FragmentHomeBinding.inflate(inflater)
+        binding= FragmentHomeBinding.inflate(inflater)
         return binding.root
     }
 
@@ -53,9 +53,11 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mSharedPref=requireActivity().getPreferences(MODE_PRIVATE)
         getLiveCovid19Data()
-        binding.imgRefreshHf.setOnClickListener {
-            getLiveCovid19Data()
-        }
+        //broadcast reciever when internet is on
+//        binding.imgRefreshHf.setOnClickListener {
+//            getLiveCovid19Data()
+//        }
+        binding.tvByCountry.visibility=View.VISIBLE
         binding.tvByCountry.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_listFragment)
         }
