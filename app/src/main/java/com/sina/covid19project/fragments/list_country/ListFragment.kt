@@ -1,150 +1,153 @@
 package com.sina.covid19project.fragments.list_country
 
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
+
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.pd.chocobar.ChocoBar
-import com.sina.covid19project.data.data_model.ResponseData
-import com.sina.covid19project.data.network.ApiClient
-import com.sina.covid19project.data.network.ApiInterface
+import com.sina.covid19project.R
 import com.sina.covid19project.databinding.FragmentListBinding
-
-import com.sina.covid19project.utils.SortMode
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.sina.covid19project.utils_extentions.ListState
+import kotlinx.android.synthetic.main.fragment_home.view.*
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 
-class ListFragment : Fragment() {
-    lateinit var binding:FragmentListBinding
-    lateinit var adapterObj:CountryListAdapter
-    var mList:MutableList<ResponseData>?=null
-    var mSortMode: SortMode = SortMode.DEFAULT
-    var mTextSearch:String=""
+class ListFragment : Fragment(),
+    CountryListAdapter.ListItemListener {
+    lateinit var binding: FragmentListBinding
+    private val viewModelList: ListViewModel by sharedViewModel()
+
+    val adapterObj: CountryListAdapter by lazy {
+        CountryListAdapter(requireContext(), viewModelList.listContainerWhole, this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding= FragmentListBinding.inflate(inflater)
+        binding = FragmentListBinding.inflate(inflater)
         return binding.root
     }
-    companion object{
-        const val TAG="ListFragment"
+
+    companion object {
+        const val TAG = "ListFragment"
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showProgressBar()
-        adapterObj= CountryListAdapter(requireContext(),mList,object:CountryListAdapter.ListItemListener{
-            override fun listenToCountryItem(country: String) {
+        Log.e(TAG, "onViewCreated: follow thread purposes }")
+
+        handleObservables()
+        handleSortClicks()
+        onSearch()
+
+
+    }
+
+    private fun handleObservables() {
+        viewModelList.listState.observe(viewLifecycleOwner) {
+            when (it) {
+                ListState.SUCCESSFULLY_LOADED -> {
+                    viewModelList._mList?.let { it1 -> adapterObj.setList(it1) }
+                    binding.rvCountries.adapter = adapterObj
+                    binding.rvCountries.visibility = View.VISIBLE
+                    binding.pbLf.visibility = View.GONE
+                    binding.btnRetry.visibility = View.GONE
+
+                }
+                ListState.LOADING -> {
+                    binding.rvCountries.visibility = View.GONE
+                    binding.pbLf.visibility = View.VISIBLE
+                    binding.btnRetry.visibility = View.GONE
+                }
+                ListState.LOADING_FAILED -> {
+                    showNoConnectionSnackBar()
+                    binding.pbLf.visibility = View.INVISIBLE
+                    binding.btnRetry.visibility = View.VISIBLE
+                    binding.rvCountries.visibility = View.GONE
+
+                }
+                else -> {
+                    Log.e(TAG, "onViewCreated: listState is -> $it")
+                }
+            }
+        }
+        viewModelList.countryNameClicked.observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) {
+                //been clicked
                 findNavController().navigate(
                     ListFragmentDirections.actionListFragmentToDetailCountryFragment(
-                        country
+                        it
                     )
                 )
             }
-
-        })
-        getMinimumListOfCountryData()
-        binding.etSearch.addTextChangedListener {
-            mTextSearch=it.toString()
-            getMinimumListOfCountryData()
         }
+    }
+
+    private fun onSearch() {
+        binding.etSearch.addTextChangedListener {
+            Log.e(TAG, "onViewCreated: searchText -> ${it.toString()}")
+            //search and change _mList in viewModel
+            viewModelList.onSearch(it.toString())
+            //set new list in adapter
+            viewModelList._mList?.let { it1 -> adapterObj.setList(it1) }
+            //notifyData set Changed
+            adapterObj.notifyDataSetChanged()
+        }
+    }
+
+    private fun handleSortClicks() {
         binding.tvPopulationLf.setOnClickListener {
-            mSortMode= SortMode.POPULATION
-            getMinimumListOfCountryData()
+            viewModelList.onSortWithPopulation()
+            adapterObj.notifyDataSetChanged()
         }
         binding.tvHighestCaught.setOnClickListener {
-            mSortMode= SortMode.CASES
-            getMinimumListOfCountryData()
+            viewModelList.onSortWithCases()
+            adapterObj.notifyDataSetChanged()
         }
         binding.tvZToA.setOnClickListener {
-            mSortMode= SortMode.Z_TO_A
-            getMinimumListOfCountryData()
+            viewModelList.onSortWithZtoA()
+            adapterObj.notifyDataSetChanged()
         }
         binding.tvHighestPercentage.setOnClickListener {
-            mSortMode= SortMode.PERCENTAGE
-            getMinimumListOfCountryData()
+            viewModelList.onSortWithPercentage()
+            adapterObj.notifyDataSetChanged()
+        }
+        binding.btnRetry.setOnClickListener {
+            viewModelList.getListApi()
         }
     }
 
-    private fun showProgressBar() {
-        binding.pbLf.visibility=View.VISIBLE
+    override fun onPause() {
+        super.onPause()
+        viewModelList._CountryNameClicked.value = ""
     }
 
-
-    private fun getMinimumListOfCountryData() {
-//        var listTemp= mutableListOf<ResponseData>()
-        val api = ApiClient.client.create(ApiInterface::class.java)
-        val call = api.getAllCountries()
-        call.enqueue(object : Callback<MutableList<ResponseData>> {
-            override fun onResponse(
-                call: Call<MutableList<ResponseData>>,
-                response: Response<MutableList<ResponseData>>
-            ) {
-                if (response.isSuccessful) {
-                    mList=response.body()!!
-                    setupRecyclerViewWithThisList()
-
-                }
-            }
-
-            override fun onFailure(call: Call<MutableList<ResponseData>>, t: Throwable) {
-                Log.e("ListFragment", "onFailure:$t ",)
-                showSnackBar()
-
-
-            }
-        })
-
-
+    override fun onResume() {
+        super.onResume()
+        Log.e(TAG, "onResume: back To List")
+        binding.rvCountries.adapter = adapterObj
     }
-    fun showSnackBar() {
-        ChocoBar.builder().setActivity(requireActivity())
-            .setDuration(ChocoBar.LENGTH_LONG)
-            .setText("اینترنت متصل نیست")
-            .red()
+
+    private fun showNoConnectionSnackBar(){
+        Snackbar.make(requireView(), R.string.no_internet_alert_text, 2000)
+            .setBackgroundTint(ContextCompat.getColor(requireContext(),R.color.no_internet_color))
             .show()
+
     }
 
-    private fun setupRecyclerViewWithThisList() {
-        val newList: MutableList<ResponseData> = if (mTextSearch == "") {
-            mList!!
-        } else {
-            mList?.filter { it.country?.contains(mTextSearch,true)?:true }
-         as MutableList<ResponseData>
-        }
-        when (mSortMode) {
-            SortMode.CASES->{newList.sortByDescending { it.cases  }
-                Log.e(TAG, "setupRecyclerViewWithThisList: SortMode is cases", ) }
-            SortMode.Z_TO_A->{newList.sortByDescending { it.country }
-                Log.e(TAG, "setupRecyclerViewWithThisList: SortMode is Z to A", )}
-            SortMode.POPULATION->{newList.sortByDescending { it.population}
-                Log.e(TAG, "setupRecyclerViewWithThisList: SortMode is population", )}
-            SortMode.PERCENTAGE->{ newList.sortByDescending { it.percentage }
-                Log.e(TAG, "setupRecyclerViewWithThisList: SortMode is percentage", )}
-            else -> {
-                Log.e(TAG, "setupRecyclerViewWithThisList: SortMode is Default", )}
-        }
-        adapterObj.setList(newList)
-        hideProgressBar()
-        unhideRv()
-//        val anim:Animation
-//        binding.rvCountries.animation=anim
-        binding.rvCountries.adapter=adapterObj
+    override fun listenToCountryItem(country: String) {
+        viewModelList._CountryNameClicked.value = country
     }
 
-    private fun unhideRv() {
-        binding.rvCountries.visibility=View.VISIBLE
-    }
-
-    private fun hideProgressBar() {
-        binding.pbLf.visibility=View.GONE
-    }
 
 }

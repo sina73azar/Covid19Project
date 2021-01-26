@@ -6,7 +6,7 @@
     <color name="black">#FF000000</color>
     <color name="m_black_1">#66000032</color>
     <color name="m_black_2">#26000032</color>
-    <color name="no_internet_color">#E81752</color>
+    <color name="no_internet_color">#E53935</color>
     //
     <color name="m_green_1">#99043306</color>
     <color name="m_green_2">#0E8C14</color>
@@ -41,4 +41,14 @@
     <color name="green_earth_600">#80a742</color>
     <color name="green_earth_700">#6d9439</color>
     <color name="green_earth_900">#395f1f</color>
+
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_200">#EEEEEE</color>
+    <color name="grey_300">#E0E0E0</color>
+    <color name="grey_400">#BDBDBD</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="grey_700">#616161</color>
+    <color name="grey_800">#424242</color>
+    <color name="grey_900">#212121</color>
+
 </resources>

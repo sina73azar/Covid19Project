@@ -73,5 +73,5 @@ data class ResponseData(
     @SerializedName("criticalPerOneMillion")
     @Expose
     val criticalPerOneMillion: Double,
-    var percentage: Float? = ((deaths?.toFloat())?.div((cases?.toFloat()!!)))
+    var percentage: Float? = ((deaths?.toFloat())?.div((cases?.toFloat()!!)))?.times(100)
 )
