@@ -1,8 +1,9 @@
-package com.sina.covid19project
+package com.sina.covid19project.fragments
 
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.sina.covid19project.R
 
 
 class MainActivity : AppCompatActivity() {

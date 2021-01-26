@@ -4,11 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+
 import com.sina.covid19project.data.data_model.ResponseData
 import com.sina.covid19project.databinding.CountryItemBinding
-import java.math.RoundingMode
+import com.sina.covid19project.utils_extentions.round
+
 
 class CountryListAdapter(
     private val mContext: Context,
@@ -18,7 +21,9 @@ class CountryListAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = CountryItemBinding.inflate(LayoutInflater.from(mContext), parent, false)
+
+        val binding = CountryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
         return MyViewHolder(binding)
     }
 
@@ -44,21 +49,22 @@ class CountryListAdapter(
                         item.country ?: "iran"
                     )
                 }
+                val imageFlag = Glide.with(mContext).load(it.countryInfo?.flag).into(imgFlag)
+                //how to send this drawable to next fragment so that no need to load it again?
 
             }
+
         }
-        Glide.with(mContext).load(item?.countryInfo?.flag).into(holder.binding.imgFlag)
+
     }
 
     override fun getItemCount(): Int {
         return listCountry?.size ?: 0
     }
 
-    fun setList(newList: MutableList<ResponseData>) {
-        listCountry = newList
+    fun setList(newList:MutableList<ResponseData>){
+        listCountry=newList
     }
-
-
     class MyViewHolder(val binding: CountryItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -67,9 +73,7 @@ class CountryListAdapter(
     }
 }
 
-fun Float.round(i: Int): Float {
-    return toBigDecimal().setScale(i, RoundingMode.UP).toFloat()
-}
+
 
 
 
