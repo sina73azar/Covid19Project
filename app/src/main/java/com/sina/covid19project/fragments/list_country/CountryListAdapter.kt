@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -36,7 +37,12 @@ class CountryListAdapter(
                 val allCaught = it.cases
                 val percentage: Float =
                     (allDeath?.toFloat()?.div(allCaught?.toFloat()!!))?.times(100) ?: 0f
-                tvCountryNameListItem.text = it.country
+//                tvCountryNameListItem.text = it.country
+                if(it.faName.isNullOrEmpty()){
+                    tvCountryNameListItem.text=it.country
+                }else{
+                    tvCountryNameListItem.text=it.faName
+                }
                 tvDeathToAllCaughtPercentage.text = "%${percentage.round(3)}"
                 tvDeathItem.text = it.deaths.toString()
                 tvRecoveredItem.text = it.recovered.toString()
@@ -49,6 +55,9 @@ class CountryListAdapter(
                         item.country ?: "iran"
                     )
                 }
+//                cardViewCountry.setOnLongClickListener {
+//                    Toast.makeText(mContext ,"fdsfdsf", Toast.LENGTH_SHORT).show()
+//                }
                 val imageFlag = Glide.with(mContext).load(it.countryInfo?.flag).into(imgFlag)
                 //how to send this drawable to next fragment so that no need to load it again?
 

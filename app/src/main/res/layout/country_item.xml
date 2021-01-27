@@ -8,9 +8,11 @@
 
     <androidx.cardview.widget.CardView
 
+        android:id="@+id/card_view_country"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="7dp"
+        android:clickable="true"
         android:fadingEdge="vertical"
         android:fadingEdgeLength="50dp"
         android:requiresFadingEdge="vertical"

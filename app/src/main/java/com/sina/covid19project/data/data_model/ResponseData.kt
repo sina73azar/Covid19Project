@@ -10,6 +10,7 @@ data class ResponseData(
     @SerializedName("country")
     @Expose
     val country: String?,
+
     @SerializedName("countryInfo")
     @Expose
     val countryInfo: CountryInfo?,
@@ -73,5 +74,11 @@ data class ResponseData(
     @SerializedName("criticalPerOneMillion")
     @Expose
     val criticalPerOneMillion: Double,
+    @SerializedName("fa_name")
+    @Expose
+    val faName:String?,
+    @SerializedName("fa_continent")
+    @Expose
+    val faContinent: String?,
     var percentage: Float? = ((deaths?.toFloat())?.div((cases?.toFloat()!!)))?.times(100)
 )
