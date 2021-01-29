@@ -34,12 +34,12 @@ class ListViewModel(val mContext: Context, private val listRepo: ListRepository)
 
     init {
         getListApi()
-        
+
 
     }
 
     fun getListApi() {
-        Log.e(TAG, "getListApi: starting request", )
+        Log.e(TAG, "getListApi: starting request")
         _listState.postValue(ListState.LOADING)
         viewModelScope.launch(Dispatchers.IO) {
             Log.e(TAG, "getListApi: in coroutine scope before request")
@@ -48,10 +48,12 @@ class ListViewModel(val mContext: Context, private val listRepo: ListRepository)
 //                Log.e(TAG, "getListApi: $listContainerWhole", )
                 //remove zero population countries
                 listContainerWhole =
-                    listContainerWhole!!.filter { it.population != 0 } as MutableList<ResponseData>
+                    listContainerWhole!!.filter { it.population != 0 && !it.faName.isNullOrEmpty() } as MutableList<ResponseData>
                 //set percentage field for every country
                 for (item in listContainerWhole!!) {
-                    item.percentage= ((item.deaths?.toFloat())?.div((item.cases?.toFloat()!!)))?.times(100)?.round(3)
+                    item.percentage =
+                        ((item.deaths?.toFloat())?.div((item.cases?.toFloat()!!)))?.times(100)
+                            ?.round(3)
                 }
                 listContainerWhole!!.sortByDescending { it.cases }
                 _mList = listContainerWhole
@@ -80,14 +82,21 @@ class ListViewModel(val mContext: Context, private val listRepo: ListRepository)
 
     fun onSortWithPercentage() {
         _mList?.sortByDescending { it.percentage }
-        for(i in 1..50){
+        for (i in 1..50) {
             Log.e(TAG, "onSortWithPercentage: ${_mList?.get(i)?.percentage}")
         }
     }
 
     fun onSearch(txtSearch: String) {
-        _mList = listContainerWhole?.filter { it.country?.contains(txtSearch, true) ?: true }
-                as MutableList<ResponseData>
+        _mList =
+            listContainerWhole?.filter { it.country?.contains(txtSearch, true) ?: true }
+                    as MutableList<ResponseData>
+        if(_mList.isNullOrEmpty()){
+            //جستجوی نام به فارسی
+            _mList=listContainerWhole?.filter {
+                it.faName?.contains(txtSearch, true) ?: true
+            } as MutableList<ResponseData>
+        }
         Log.e(TAG, "onSearch: listContainerWhole size ${listContainerWhole?.size}")
         Log.e(TAG, "onSearch: _mList size ${_mList?.size}")
     }

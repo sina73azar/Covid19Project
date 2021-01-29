@@ -81,7 +81,7 @@ data class ResponseData(
     @SerializedName("fa_continent")
     @Expose
     val faContinent: String?,
-    var percentage: Float? 
+    var percentage: Float?
 
 
 )
