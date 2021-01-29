@@ -47,10 +47,13 @@ class ListViewModel(val mContext: Context, private val listRepo: ListRepository)
                 listContainerWhole = listRepo.fetchList()
 //                Log.e(TAG, "getListApi: $listContainerWhole", )
                 //remove zero population countries
-                listContainerWhole=listContainerWhole!!.filter { it.population!=0 } as MutableList<ResponseData>
+                listContainerWhole =
+                    listContainerWhole!!.filter { it.population != 0 } as MutableList<ResponseData>
+                //set percentage field for every country
+                for (item in listContainerWhole!!) {
+                    item.percentage= ((item.deaths?.toFloat())?.div((item.cases?.toFloat()!!)))?.times(100)?.round(3)
+                }
                 listContainerWhole!!.sortByDescending { it.cases }
-
-
                 _mList = listContainerWhole
                 _listState.postValue(ListState.SUCCESSFULLY_LOADED)
                 Log.e(TAG, "try to get list: list is successfully fetched")

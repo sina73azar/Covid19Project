@@ -81,5 +81,7 @@ data class ResponseData(
     @SerializedName("fa_continent")
     @Expose
     val faContinent: String?,
-    var percentage: Float? = ((deaths?.toFloat())?.div((cases?.toFloat()!!)))?.times(100)?.round(3)
+    var percentage: Float? 
+
+
 )
