@@ -38,10 +38,10 @@ class CountryListAdapter(
                 val percentage: Float =
                     (allDeath?.toFloat()?.div(allCaught?.toFloat()!!))?.times(100) ?: 0f
 //                tvCountryNameListItem.text = it.country
-                if(it.faName.isNullOrEmpty()){
-                    tvCountryNameListItem.text=it.country
-                }else{
-                    tvCountryNameListItem.text=it.faName
+                if (it.faName.isNullOrEmpty()) {
+                    tvCountryNameListItem.text = it.country
+                } else {
+                    tvCountryNameListItem.text = it.faName
                 }
                 tvDeathToAllCaughtPercentage.text = "%${percentage.round(3)}"
                 tvDeathItem.text = it.deaths.toString()
@@ -55,12 +55,17 @@ class CountryListAdapter(
                         item.country ?: "iran"
                     )
                 }
-//                cardViewCountry.setOnLongClickListener {
-//                    Toast.makeText(mContext ,"fdsfdsf", Toast.LENGTH_SHORT).show()
-//                }
-                val imageFlag = Glide.with(mContext).load(it.countryInfo?.flag).into(imgFlag)
-                //how to send this drawable to next fragment so that no need to load it again?
-
+                imgFlag.setOnClickListener {
+                    listener.listenToCountryItem(
+                        item.country ?: "iran"
+                    )
+                }
+                viewBackRightCardview.setOnClickListener {
+                    listener.listenToCountryItem(
+                        item.country ?: "iran"
+                    )
+                }
+                Glide.with(mContext).load(it.countryInfo?.flag).into(imgFlag)
             }
 
         }
@@ -71,14 +76,15 @@ class CountryListAdapter(
         return listCountry?.size ?: 0
     }
 
-    fun setList(newList:MutableList<ResponseData>){
-        listCountry=newList
+    fun setList(newList: MutableList<ResponseData>) {
+        listCountry = newList
     }
+
     class MyViewHolder(val binding: CountryItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    public interface ListItemListener{
-        fun listenToCountryItem(country:String)
+    public interface ListItemListener {
+        fun listenToCountryItem(country: String)
     }
 }
 

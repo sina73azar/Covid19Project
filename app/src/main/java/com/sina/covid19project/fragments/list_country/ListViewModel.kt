@@ -45,10 +45,10 @@ class ListViewModel(val mContext: Context, private val listRepo: ListRepository)
             Log.e(TAG, "getListApi: in coroutine scope before request")
             try {
                 listContainerWhole = listRepo.fetchList()
-                Log.e(TAG, "getListApi: $listContainerWhole", )
-//                listContainerWhole=listRepo.fetchTranslation()
+//                Log.e(TAG, "getListApi: $listContainerWhole", )
+                //remove zero population countries
+                listContainerWhole=listContainerWhole!!.filter { it.population!=0 } as MutableList<ResponseData>
                 listContainerWhole!!.sortByDescending { it.cases }
-                //ترجمه نام کشور ها به فارسی
 
 
                 _mList = listContainerWhole
@@ -77,6 +77,9 @@ class ListViewModel(val mContext: Context, private val listRepo: ListRepository)
 
     fun onSortWithPercentage() {
         _mList?.sortByDescending { it.percentage }
+        for(i in 1..50){
+            Log.e(TAG, "onSortWithPercentage: ${_mList?.get(i)?.percentage}")
+        }
     }
 
     fun onSearch(txtSearch: String) {

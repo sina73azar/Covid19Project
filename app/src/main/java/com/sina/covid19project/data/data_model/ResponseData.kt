@@ -2,6 +2,7 @@ package com.sina.covid19project.data.data_model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.sina.covid19project.utils_extentions.round
 
 data class ResponseData(
     @SerializedName("updated")
@@ -80,5 +81,5 @@ data class ResponseData(
     @SerializedName("fa_continent")
     @Expose
     val faContinent: String?,
-    var percentage: Float? = ((deaths?.toFloat())?.div((cases?.toFloat()!!)))?.times(100)
+    var percentage: Float? = ((deaths?.toFloat())?.div((cases?.toFloat()!!)))?.times(100)?.round(3)
 )

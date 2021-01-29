@@ -9,6 +9,7 @@
         <item name="android:paddingEnd">15dp</item>
         <item name="android:textSize">16sp</item>
         <item name="fontFamily">@font/b_yaghut</item>
+        <item name="android:textColor">@color/grey_700</item>
         <item name="fontWeight">200</item>
     </style>
 
@@ -17,7 +18,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="autoSizeMinTextSize">12sp</item>
         <item name="autoSizeMaxTextSize">16sp</item>
-        <item name="android:textColor">@color/grey_900</item>
+        <item name="android:textColor">@color/grey_700</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
         <item name="fontFamily">@font/b_yaghut</item>
@@ -29,7 +30,7 @@
         <item name="android:layout_marginStart">16dp</item>
         <item name="android:paddingStart">10dp</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:textColor">@color/grey_900</item>
+        <item name="android:textColor">@color/grey_700</item>
         <item name="android:textSize">18sp</item>
         <item name="fontFamily">@font/samim_number</item>
     </style>
@@ -43,7 +44,7 @@
     </style>
     <style name="style_text_2">
         <item name="fontFamily">@font/b_yaghut_bold</item>
-        <item name="android:textColor">@color/grey_800</item>
+        <item name="android:textColor">@color/grey_700</item>
     </style>
     <style name="style_numbers">
         <item name="fontFamily">@font/samim_number</item>
