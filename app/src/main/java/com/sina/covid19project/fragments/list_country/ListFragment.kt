@@ -1,6 +1,5 @@
 package com.sina.covid19project.fragments.list_country
 
-import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,11 +11,11 @@ import androidx.core.widget.addTextChangedListener
 
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.pd.chocobar.ChocoBar
+
 import com.sina.covid19project.R
 import com.sina.covid19project.databinding.FragmentListBinding
 import com.sina.covid19project.utils_extentions.ListState
-import kotlinx.android.synthetic.main.fragment_home.view.*
+
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 

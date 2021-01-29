@@ -37,7 +37,7 @@ class DetailCountryFragment : Fragment() {
         //get country name from list fragment
         val countryName =
             DetailCountryFragmentArgs.fromBundle(requireArguments()).countryName
-        binding.tvCountryName.text = countryName
+//        binding.tvCountryName.text = countryName
         getCountryData(countryName).let {
             if (it) {
                 bindDataToView()
@@ -57,7 +57,9 @@ class DetailCountryFragment : Fragment() {
             val flagUrl = curCountry.countryInfo?.flag
             flagUrl?.let { loadImageFlag(flagUrl) }
             binding.apply {
-                tvContinent.text = curCountry.continent
+                binding.tvCountryName.text=curCountry.faName
+//                tvContinent.text = curCountry.continent
+                tvContinent.text=curCountry.faContinent
                 tvPopulation.text = curCountry.population.toString()
                 //setting mavared Ebtela
                 tvAll4.text = curCountry.cases.toString()

@@ -2,6 +2,7 @@ package com.sina.covid19project.data.data_model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.sina.covid19project.utils_extentions.round
 
 data class ResponseData(
     @SerializedName("updated")
@@ -10,6 +11,7 @@ data class ResponseData(
     @SerializedName("country")
     @Expose
     val country: String?,
+
     @SerializedName("countryInfo")
     @Expose
     val countryInfo: CountryInfo?,
@@ -73,5 +75,11 @@ data class ResponseData(
     @SerializedName("criticalPerOneMillion")
     @Expose
     val criticalPerOneMillion: Double,
-    var percentage: Float? = ((deaths?.toFloat())?.div((cases?.toFloat()!!)))?.times(100)
+    @SerializedName("fa_name")
+    @Expose
+    val faName:String?,
+    @SerializedName("fa_continent")
+    @Expose
+    val faContinent: String?,
+    var percentage: Float? = ((deaths?.toFloat())?.div((cases?.toFloat()!!)))?.times(100)?.round(3)
 )

@@ -30,7 +30,7 @@
         android:id="@+id/listFragment"
         android:name="com.sina.covid19project.fragments.list_country.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" >
+        tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/action_listFragment_to_detailCountryFragment"
             app:destination="@id/detailCountryFragment"
@@ -42,7 +42,7 @@
         android:id="@+id/detailCountryFragment"
         android:name="com.sina.covid19project.fragments.detail.DetailCountryFragment"
         android:label="fragment_detail_country"
-        tools:layout="@layout/fragment_detail_country" >
+        tools:layout="@layout/fragment_detail_country">
         <argument
             android:name="countryName"
             app:argType="string" />

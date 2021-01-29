@@ -12,7 +12,6 @@ import com.sina.covid19project.utils_extentions.ListState
 import com.sina.covid19project.utils_extentions.round
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
 
 class ListViewModel(val mContext: Context, private val listRepo: ListRepository) : ViewModel() {
     companion object {
@@ -35,19 +34,22 @@ class ListViewModel(val mContext: Context, private val listRepo: ListRepository)
 
     init {
         getListApi()
+        
 
     }
 
     fun getListApi() {
-
+        Log.e(TAG, "getListApi: starting request", )
         _listState.postValue(ListState.LOADING)
         viewModelScope.launch(Dispatchers.IO) {
             Log.e(TAG, "getListApi: in coroutine scope before request")
             try {
                 listContainerWhole = listRepo.fetchList()
+//                Log.e(TAG, "getListApi: $listContainerWhole", )
+                //remove zero population countries
+                listContainerWhole=listContainerWhole!!.filter { it.population!=0 } as MutableList<ResponseData>
                 listContainerWhole!!.sortByDescending { it.cases }
-                //ترجمه نام کشور ها به فارسی
-                translateCountry()
+
 
                 _mList = listContainerWhole
                 _listState.postValue(ListState.SUCCESSFULLY_LOADED)
@@ -60,18 +62,11 @@ class ListViewModel(val mContext: Context, private val listRepo: ListRepository)
 
     }
 
-    private fun translateCountry() {
-        //iso for Iran is: ISO 3166-2:IR
-        //iso 2 : fas / per*   fa_IR [Persian (Iran)]
-        val local = Locale("Persian","asas")
-        val a=local.getDisplayCountry(local)
-        Log.e(TAG, "translateCountry: a is-> $a" )
-    }
-
 
     fun onSortWithPopulation() {
         _mList?.sortByDescending { it.population }
     }
+
     fun onSortWithCases() {
         _mList?.sortByDescending { it.cases }
     }
@@ -82,9 +77,12 @@ class ListViewModel(val mContext: Context, private val listRepo: ListRepository)
 
     fun onSortWithPercentage() {
         _mList?.sortByDescending { it.percentage }
+        for(i in 1..50){
+            Log.e(TAG, "onSortWithPercentage: ${_mList?.get(i)?.percentage}")
+        }
     }
 
-    fun onSearch(txtSearch: String){
+    fun onSearch(txtSearch: String) {
         _mList = listContainerWhole?.filter { it.country?.contains(txtSearch, true) ?: true }
                 as MutableList<ResponseData>
         Log.e(TAG, "onSearch: listContainerWhole size ${listContainerWhole?.size}")
@@ -106,9 +104,9 @@ class ListViewModel(val mContext: Context, private val listRepo: ListRepository)
     }
 
     fun getPercentageStr(cases: Int?, population: Int?): CharSequence {
-        if(cases!=null && population!=null){
+        if (cases != null && population != null) {
 
-            val percent=(cases.toFloat())/(population.toFloat())*100
+            val percent = (cases.toFloat()) / (population.toFloat()) * 100
 
             return "${percent.round(3)} %"
         }

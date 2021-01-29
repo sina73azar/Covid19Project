@@ -8,19 +8,24 @@
 
     <androidx.cardview.widget.CardView
 
+        android:id="@+id/card_view_country"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="7dp"
+        android:clickable="true"
         android:fadingEdge="vertical"
         android:fadingEdgeLength="50dp"
         android:requiresFadingEdge="vertical"
         app:cardBackgroundColor="@color/blue_earth_50"
+
         app:cardCornerRadius="5dp"
-        app:cardElevation="3dp"
-        app:cardMaxElevation="5dp"
-        app:cardPreventCornerOverlap="true">
+        app:cardElevation="4dp"
+        app:cardMaxElevation="6dp"
+        app:cardPreventCornerOverlap="true"
+        android:focusable="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constrain_country_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -41,7 +46,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View
-                android:id="@+id/view8"
+                android:id="@+id/view_back_right_cardview"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
@@ -61,7 +66,7 @@
                 android:adjustViewBounds="false"
 
                 android:scaleType="fitXY"
-                app:layout_constraintEnd_toStartOf="@+id/view8"
+                app:layout_constraintEnd_toStartOf="@+id/view_back_right_cardview"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="@id/view_overall"
                 app:layout_constraintTop_toTopOf="@+id/view_overall"
@@ -118,7 +123,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/tv_all_caught"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@id/tv_all_caught"
-                app:layout_constraintTop_toTopOf="@+id/view8" />
+                app:layout_constraintTop_toTopOf="@+id/view_back_right_cardview" />
 
             <TextView
                 android:id="@+id/tv_all_caught"
@@ -134,7 +139,7 @@
                 android:textColor="?attr/colorOnPrimary"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_st_deaths_item"
-                app:layout_constraintEnd_toEndOf="@+id/view8"
+                app:layout_constraintEnd_toEndOf="@+id/view_back_right_cardview"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/tv_population_item"
                 app:layout_constraintTop_toBottomOf="@+id/tv_st_cases_item"
@@ -165,8 +170,8 @@
                 android:textColor="?attr/colorOnPrimary"
 
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/view8"
-                app:layout_constraintEnd_toEndOf="@+id/view8"
+                app:layout_constraintBottom_toBottomOf="@+id/view_back_right_cardview"
+                app:layout_constraintEnd_toEndOf="@+id/view_back_right_cardview"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/tv_recovered_item"
                 app:layout_constraintTop_toBottomOf="@+id/tv_st_deaths_item"
@@ -186,7 +191,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/tv_population_item"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/tv_population_item"
-                app:layout_constraintTop_toTopOf="@+id/view8" />
+                app:layout_constraintTop_toTopOf="@+id/view_back_right_cardview" />
 
             <TextView
                 android:id="@+id/tv_population_item"
@@ -202,7 +207,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/tv_all_caught"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="@+id/view8"
+                app:layout_constraintStart_toStartOf="@+id/view_back_right_cardview"
                 app:layout_constraintTop_toBottomOf="@+id/tv_st_population_item"
                 tools:text="45487451" />
 
@@ -229,10 +234,10 @@
 
                 android:textColor="?attr/colorOnPrimary"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/view8"
+                app:layout_constraintBottom_toBottomOf="@+id/view_back_right_cardview"
                 app:layout_constraintEnd_toStartOf="@+id/tv_death_item"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/view8"
+                app:layout_constraintStart_toStartOf="@+id/view_back_right_cardview"
                 app:layout_constraintTop_toBottomOf="@+id/tv_st_recovered_item"
                 tools:text="5451215" />
 
