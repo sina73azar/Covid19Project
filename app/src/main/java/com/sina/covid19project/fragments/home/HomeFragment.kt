@@ -3,6 +3,7 @@ package com.sina.covid19project.fragments.home
 
 import android.graphics.Color
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -37,6 +38,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         handleObservables()
+        binding.tvLinkSource.movementMethod = LinkMovementMethod.getInstance()
         binding.tvByCountry.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_listFragment)
         }
