@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Covid19Project</string>
-
+    <string name="app_name">جهان سنج</string>
     <string name="text_splash_fragment">آمار به روز کرونا</string>
     <string name="text_all_in_world">مبتلاشدگان</string>
     <string name="text_all_in_world_today">مبتلاشدگان امروز</string>
@@ -38,5 +37,5 @@
     <string name="tests_per_population_st">درصد تست گرفتن نسبت به جمعیت </string>
 
     <string name="flag_of_country">flag of country</string>
-    <string name="link_source">منبع بروزرسانی اطلاعات(جهان سنج)   \n<a href="https://www.worldometers.info/coronavirus/">worldometers.info</a></string>
+    <string name="link_source">منبع بروزرسانی اطلاعات(جهان سنج)   \n<a href="https://www.worldometers.info/coronavirus/">worldometers.info/coronavirus</a></string>
 </resources>
