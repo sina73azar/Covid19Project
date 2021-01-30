@@ -1,13 +1,14 @@
 package com.sina.covid19project.fragments.detail
 
 
-
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.google.android.material.appbar.AppBarLayout
 import com.sina.covid19project.databinding.FragmentDetailCountryBinding
 import com.sina.covid19project.fragments.list_country.ListViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
@@ -57,9 +58,9 @@ class DetailCountryFragment : Fragment() {
             val flagUrl = curCountry.countryInfo?.flag
             flagUrl?.let { loadImageFlag(flagUrl) }
             binding.apply {
-                binding.tvCountryName.text=curCountry.faName
-//                tvContinent.text = curCountry.continent
-                tvContinent.text=curCountry.faContinent
+                binding.tvCountryName.text = curCountry.faName
+                binding.tvCountryNameEn.text=curCountry.country
+                tvContinent.text = curCountry.faContinent
                 tvPopulation.text = curCountry.population.toString()
                 //setting mavared Ebtela
                 tvAll4.text = curCountry.cases.toString()
@@ -85,7 +86,8 @@ class DetailCountryFragment : Fragment() {
                 //setting recovered
                 tvRecoveredAllData.text = curCountry.recovered.toString()
                 tvRecoveredTodayData.text = curCountry.todayRecovered.toString()
-                tvOnePerMillionRecoveredData.text = curCountry.recoveredPerOneMillion?.toInt().toString()
+                tvOnePerMillionRecoveredData.text =
+                    curCountry.recoveredPerOneMillion?.toInt().toString()
             }
 
 
@@ -97,13 +99,11 @@ class DetailCountryFragment : Fragment() {
         Glide.with(requireContext()).load(url).into(binding.imgFlag)
     }
 
-    fun addOffset() {
-        //        binding.appBarLayout.addOnOffsetChangedListener(
+//    private fun addOffset() {
+//        binding.appBarLayout.addOnOffsetChangedListener(
 //            AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-//                Log.e(
-//                    TAG,
-//                    "onOffsetChanged: $verticalOffset",
-//                )
+//                Log.e(TAG, "onOffsetChanged: $verticalOffset",)
+//
 //            })
-    }
+//    }
 }

@@ -96,7 +96,7 @@ tools:context=".fragments.detail.DetailCountryFragment">
 
                 <TextView
                     android:id="@+id/tv_country_name"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="?attr/actionBarSize"
 
                     android:elevation="10dp"
@@ -107,7 +107,7 @@ tools:context=".fragments.detail.DetailCountryFragment">
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_continent"
-                    tools:text="Iran" />
+                    tools:text="ایران" />
 
                 <TextView
                     android:id="@+id/textView30"
@@ -148,15 +148,28 @@ tools:context=".fragments.detail.DetailCountryFragment">
                     app:layout_constraintTop_toTopOf="@+id/textView30"
                     tools:text="54121645" />
 
+                <TextView
+                    android:id="@+id/tv_country_name_en"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?attr/actionBarSize"
+                    tools:text="Iran"
+                    android:elevation="10dp"
+                    android:fadingEdgeLength="6dp"
+                    android:gravity="center"
+                    android:textColor="@color/blue_earth_50"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
                 <androidx.constraintlayout.helper.widget.Flow
-                    android:id="@+id/flow"
+                    android:id="@+id/flow_in_collapse_toolbar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@color/blue_earth_500"
                     android:orientation="horizontal"
-                    app:constraint_referenced_ids="tv_population,textView30,tv_continent,textView8,tv_country_name"
+                    app:constraint_referenced_ids="tv_population,textView30,tv_continent,textView8,tv_country_name_en,tv_country_name"
                     app:flow_horizontalGap="15dp"
                     app:flow_horizontalStyle="packed"
+                    app:flow_lastHorizontalBias="0.5"
                     app:flow_lastHorizontalStyle="spread"
                     app:flow_maxElementsWrap="4"
                     app:flow_wrapMode="chain"

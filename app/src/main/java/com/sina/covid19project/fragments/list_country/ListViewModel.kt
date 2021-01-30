@@ -82,9 +82,6 @@ class ListViewModel(val mContext: Context, private val listRepo: ListRepository)
 
     fun onSortWithPercentage() {
         _mList?.sortByDescending { it.percentage }
-        for (i in 1..50) {
-            Log.e(TAG, "onSortWithPercentage: ${_mList?.get(i)?.percentage}")
-        }
     }
 
     fun onSearch(txtSearch: String) {

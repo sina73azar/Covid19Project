@@ -5,6 +5,7 @@
 <data>
 
 </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:id="@+id/frameLayout"
@@ -20,7 +21,6 @@
             android:id="@+id/tv_st_last_update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:elevation="5dp"
             android:gravity="center"
             android:layoutDirection="ltr"
@@ -31,11 +31,8 @@
             android:text="@string/last_update"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/tv_alert_no_internet"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tv_date"
-            app:layout_constraintTop_toBottomOf="@+id/flow7"
-            app:layout_constraintVertical_weight="1" />
+            app:layout_constraintEnd_toEndOf="@+id/flow7"
+            app:layout_constraintTop_toBottomOf="@+id/flow7" />
 
         <TextView
             android:id="@+id/tv_date"
@@ -59,16 +56,31 @@
             tools:text="2021/1/20 20:02:31" />
 
 
+        <TextView
+            android:id="@+id/tv_link_source"
+            style="@style/style_tv_st_df"
+            android:layout_width="363dp"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:gravity="center"
+            android:linksClickable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            android:text="@string/link_source"
+            android:textColorLink="@color/green_earth_600"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_by_country"
+            app:layout_constraintStart_toStartOf="@+id/tv_by_country"
+            app:layout_constraintTop_toBottomOf="@+id/tv_by_country" />
+
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="363dp"
+            android:layout_height="81dp"
 
             android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="8dp"
             android:background="@drawable/shape_bg_view_back_for_home"
             android:elevation="5dp"
             android:fadingEdgeLength="8dp"
@@ -79,36 +91,29 @@
             app:layout_constraintBottom_toTopOf="@+id/flow4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread_inside"
-            app:layout_constraintVertical_weight="0.6" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow3"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="363dp"
+            android:layout_height="81dp"
 
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="8dp"
             android:background="@drawable/shape_bg_view_back_for_home"
             android:elevation="5dp"
             android:fadingEdgeLength="8dp"
             android:padding="5dp"
             app:constraint_referenced_ids="tv_cases_today_hf,tv_st_cases_today"
             app:layout_constraintBottom_toTopOf="@+id/flow5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/flow6"
-            app:layout_constraintVertical_weight="0.6" />
+            app:layout_constraintEnd_toEndOf="@+id/flow6"
+            app:layout_constraintStart_toStartOf="@+id/flow2"
+            app:layout_constraintTop_toBottomOf="@+id/flow6" />
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow4"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="331dp"
+            android:layout_height="81dp"
 
-            android:layout_marginStart="32dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="50dp"
             android:background="@drawable/shape_red_100_round_edge"
             android:elevation="5dp"
             android:fadingEdgeLength="8dp"
@@ -118,16 +123,13 @@
             app:constraint_referenced_ids="tv_death_all,tv_st_deaths"
             app:layout_constraintBottom_toTopOf="@+id/flow6"
             app:layout_constraintEnd_toEndOf="@+id/flow2"
-            app:layout_constraintStart_toStartOf="@+id/flow2"
-            app:layout_constraintTop_toBottomOf="@+id/flow2"
-            app:layout_constraintVertical_weight="0.6" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flow2" />
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow5"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="331dp"
+            android:layout_height="81dp"
             android:background="@drawable/shape_red_100_round_edge"
             android:elevation="5dp"
             android:fadingEdgeLength="8dp"
@@ -135,15 +137,13 @@
             app:constraint_referenced_ids="tv_death_today,tv_st_death_today"
             app:layout_constraintBottom_toTopOf="@+id/flow7"
             app:layout_constraintEnd_toEndOf="@+id/flow3"
-            app:layout_constraintStart_toStartOf="@+id/flow3"
-            app:layout_constraintTop_toBottomOf="@+id/flow3"
-            app:layout_constraintVertical_weight="0.6" />
+            app:layout_constraintStart_toStartOf="@+id/flow6"
+            app:layout_constraintTop_toBottomOf="@+id/flow3" />
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow6"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="32dp"
+            android:layout_width="331dp"
+            android:layout_height="81dp"
             android:background="@drawable/shape_green_100_round_edge"
             android:elevation="5dp"
             android:fadingEdgeLength="10dp"
@@ -152,14 +152,12 @@
             app:layout_constraintBottom_toTopOf="@+id/flow3"
             app:layout_constraintEnd_toEndOf="@+id/flow4"
             app:layout_constraintStart_toStartOf="@+id/flow4"
-            app:layout_constraintTop_toBottomOf="@+id/flow4"
-            app:layout_constraintVertical_weight="0.6" />
+            app:layout_constraintTop_toBottomOf="@+id/flow4" />
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow7"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="331dp"
+            android:layout_height="81dp"
             android:background="@drawable/shape_green_100_round_edge"
             android:elevation="5dp"
             android:fadingEdgeLength="8dp"
@@ -167,8 +165,7 @@
             app:layout_constraintBottom_toTopOf="@+id/tv_st_last_update"
             app:layout_constraintEnd_toEndOf="@+id/flow5"
             app:layout_constraintStart_toStartOf="@+id/flow5"
-            app:layout_constraintTop_toBottomOf="@+id/flow5"
-            app:layout_constraintVertical_weight="0.6" />
+            app:layout_constraintTop_toBottomOf="@+id/flow5" />
 
         <TextView
             android:id="@+id/tv__st_cases"
@@ -265,9 +262,9 @@
         <TextView
             android:id="@+id/tv_alert_no_internet"
             style="@style/style_text_1"
-            android:layout_width="0dp"
+            android:layout_width="331dp"
 
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:elevation="5dp"
             android:gravity="bottom|center"
             android:text="@string/no_internet_alert_text"
@@ -276,21 +273,17 @@
             android:textSize="14sp"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/tv_by_country"
-            app:layout_constraintEnd_toEndOf="@+id/flow7"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="@+id/tv_st_last_update"
             app:layout_constraintStart_toStartOf="@+id/flow7"
             app:layout_constraintTop_toBottomOf="@+id/tv_st_last_update"
-            app:layout_constraintVertical_weight="0.5"
             tools:text="No Internet"
             tools:visibility="visible" />
 
         <TextView
             android:id="@+id/tv_by_country"
             style="@style/style_text_2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="24dp"
+            android:layout_width="363dp"
+            android:layout_height="108dp"
 
 
             android:background="@drawable/shape_bg_btn_view_by_country"
@@ -306,11 +299,10 @@
             android:textColor="?attr/colorOnPrimary"
             android:textSize="20sp"
             app:drawableStartCompat="@drawable/iconfinder_passport_1076702"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/flow7"
+            app:layout_constraintBottom_toTopOf="@+id/tv_link_source"
+            app:layout_constraintEnd_toEndOf="@+id/flow3"
             app:layout_constraintStart_toStartOf="@+id/flow3"
-            app:layout_constraintTop_toBottomOf="@+id/tv_alert_no_internet"
-            app:layout_constraintVertical_weight="0.8" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_alert_no_internet" />
 
         <TextView
             android:id="@+id/tv_cases_today_hf"

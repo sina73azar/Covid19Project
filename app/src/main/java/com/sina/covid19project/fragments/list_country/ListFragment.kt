@@ -109,20 +109,6 @@ class ListFragment : Fragment(),
         }
     }
 
-    private fun detectKeyboardLanguage():String? {
-        val imm: InputMethodManager =
-            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
-        val ims: InputMethodSubtype? = imm.currentInputMethodSubtype
-        Log.e(TAG, "detectKeyboardLanguage: languageTag is ${ims?.languageTag}", )
-        var locale:String?=null
-        if(Build.VERSION.SDK_INT>Build.VERSION_CODES.M){
-            locale = ims?.languageTag
-
-        }
-        return locale
-    }
-
     private fun handleSortClicks() {
         binding.tvPopulationLf.setOnClickListener {
             viewModelList.onSortWithPopulation()
