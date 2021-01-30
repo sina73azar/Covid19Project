@@ -54,6 +54,7 @@ class HomeRepository(private val apiInterface: ApiInterface, private val sharedP
     }
 
      fun setMapFromSharedPref() {
+
         dataHomeMap[CASES]= sharedPref.getString(CASES,"....").toString()
         dataHomeMap[TODAY_CASES]= sharedPref.getString(TODAY_CASES,"...").toString()
         dataHomeMap[DEATHS]= sharedPref.getString(DEATHS,"...").toString()

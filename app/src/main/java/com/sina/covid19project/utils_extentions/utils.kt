@@ -27,15 +27,6 @@ fun Long.reformat(): String {
     return df.format(this)
 }
 
-fun <T> LiveData<T>.reObserve(owner: LifecycleOwner, observer: Observer<T>) {
-    removeObserver(observer)
-    observe(owner, observer)
-}
-
-fun splitNumberBy3(number: String): String {
-    return String.format("%,d", number)
-}
-
 fun getFormattedAmount(amount: String): String? {
     return NumberFormat.getNumberInstance(Locale.US).format(amount.toInt())
 }

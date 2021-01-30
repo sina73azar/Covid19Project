@@ -1,6 +1,7 @@
 package com.sina.covid19project.fragments.home
 
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
@@ -16,8 +17,8 @@ import androidx.navigation.fragment.findNavController
 import com.sina.covid19project.R
 import com.sina.covid19project.repository.HomeRepository
 import com.sina.covid19project.databinding.FragmentHomeBinding
+import com.sina.covid19project.di.NAME_SHARED_PREF
 import com.sina.covid19project.utils_extentions.getFormattedAmount
-import com.sina.covid19project.utils_extentions.splitNumberBy3
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -52,7 +53,6 @@ class HomeFragment : Fragment() {
             if (isConnected) {
                 Log.e(TAG, "onViewCreated: internet on")
                 viewModel.retrofitRequestForData()
-
             } else {
                 //no internet at all
                 Log.e(TAG, "onViewCreated: internetIs off")
@@ -62,9 +62,8 @@ class HomeFragment : Fragment() {
             setViewContent()
         }
         viewModel.repository.dataIsLoaded.observe(viewLifecycleOwner) {
-            Log.e(TAG, "onViewCreated: isdataLoaded: $it")
+            Log.e(TAG, "onViewCreated: isDataLoaded: $it")
             if (it) {
-
                 handleViewChange(it)
             } else {
                 Log.e(TAG, "onViewCreated: onFailure retrofit")
@@ -125,6 +124,7 @@ class HomeFragment : Fragment() {
         Log.e(TAG, "setViewContent:")
 
         binding.run {
+            val sharedPref=requireContext().getSharedPreferences(NAME_SHARED_PREF,Context.MODE_PRIVATE)
             Log.e(TAG, "setViewContent: ${getFormattedAmount("123458744")} ", )
             tvShowCases.text =viewModel.repository.dataHomeMap[HomeRepository.CASES]
             tvCasesTodayHf.text = viewModel.repository.dataHomeMap[HomeRepository.TODAY_CASES]
