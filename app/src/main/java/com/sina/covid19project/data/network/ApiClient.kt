@@ -8,12 +8,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient{
-    const val TAG="Retrofit_Creation"
+
     private const val BASE_URL="https://rayawin.ir/content/countryapi/"
 
 //    private const val BASE_URL="https://disease.sh/v3/covid-19/"
     private var retrofit:Retrofit?=null
-//    private var retrofitTranslate:Retrofit?=null
+
 
     private val interceptor = LoggingInterceptor.Builder()
         .setLevel(Level.BASIC)
@@ -36,16 +36,4 @@ object ApiClient{
 
             return retrofit!!
         }
-
-//    val clientTranslate:Retrofit
-//        get() {
-//            if(retrofitTranslate==null){
-//                retrofitTranslate=Retrofit.Builder()
-//                    .addConverterFactory(GsonConverterFactory.create())
-//                    .baseUrl(BASE_URL_TRANSLATE)
-//                    .client(okHttpClient)
-//                    .build()
-//            }
-//            return retrofitTranslate!!
-//        }
 }

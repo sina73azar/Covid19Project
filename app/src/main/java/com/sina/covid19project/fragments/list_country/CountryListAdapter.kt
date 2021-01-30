@@ -1,16 +1,20 @@
 package com.sina.covid19project.fragments.list_country
 
+
 import android.annotation.SuppressLint
 import android.content.Context
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
+
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
+
 import com.sina.covid19project.data.data_model.ResponseData
 import com.sina.covid19project.databinding.CountryItemBinding
+import com.sina.covid19project.utils_extentions.getFormattedAmount
 import com.sina.covid19project.utils_extentions.round
 
 
@@ -28,6 +32,8 @@ class CountryListAdapter(
         return MyViewHolder(binding)
     }
 
+
+
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = listCountry?.get(position)
@@ -37,17 +43,16 @@ class CountryListAdapter(
                 val allCaught = it.cases
                 val percentage: Float =
                     (allDeath?.toFloat()?.div(allCaught?.toFloat()!!))?.times(100) ?: 0f
-//                tvCountryNameListItem.text = it.country
                 if (it.faName.isNullOrEmpty()) {
                     tvCountryNameListItem.text = it.country
                 } else {
                     tvCountryNameListItem.text = it.faName
                 }
-                tvDeathToAllCaughtPercentage.text = "%${percentage.round(3)}"
-                tvDeathItem.text = it.deaths.toString()
-                tvRecoveredItem.text = it.recovered.toString()
-                tvPopulationItem.text = it.population.toString()
-                tvAllCaught.text = it.cases.toString()
+                tvDeathToAllCaughtPercentage.text =  "${percentage.round(3)}%"
+                tvDeathItem.text = it.deaths?.let { it1 -> getFormattedAmount(it1) }
+                tvRecoveredItem.text = it.recovered?.let { it1 -> getFormattedAmount(it1) }
+                tvPopulationItem.text = it.population?.let { it1 -> getFormattedAmount(it1) }
+                tvAllCaught.text = it.cases?.let { it1 -> getFormattedAmount(it1) }
                 //listener
 
                 viewOverall.setOnClickListener {

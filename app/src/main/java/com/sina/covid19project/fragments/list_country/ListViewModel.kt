@@ -7,13 +7,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sina.covid19project.data.data_model.ResponseData
-import com.sina.covid19project.repository.ListRepository
+import com.sina.covid19project.repository.MyRepository
 import com.sina.covid19project.utils_extentions.ListState
 import com.sina.covid19project.utils_extentions.round
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ListViewModel(val mContext: Context, private val listRepo: ListRepository) : ViewModel() {
+class ListViewModel(val mContext: Context, private val myRepo: MyRepository) : ViewModel() {
     companion object {
         const val TAG = "ListViewModel"
     }
@@ -44,7 +44,7 @@ class ListViewModel(val mContext: Context, private val listRepo: ListRepository)
         viewModelScope.launch(Dispatchers.IO) {
             Log.e(TAG, "getListApi: in coroutine scope before request")
             try {
-                listContainerWhole = listRepo.fetchList()
+                listContainerWhole = myRepo.fetchList()
 //                Log.e(TAG, "getListApi: $listContainerWhole", )
                 //remove zero population countries
                 listContainerWhole =

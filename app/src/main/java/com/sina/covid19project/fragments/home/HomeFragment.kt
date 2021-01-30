@@ -1,7 +1,5 @@
 package com.sina.covid19project.fragments.home
 
-
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
@@ -11,16 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-
-
 import androidx.navigation.fragment.findNavController
 import com.sina.covid19project.R
-import com.sina.covid19project.repository.HomeRepository
 import com.sina.covid19project.databinding.FragmentHomeBinding
-import com.sina.covid19project.di.NAME_SHARED_PREF
+import com.sina.covid19project.utils_extentions.ListState
 import com.sina.covid19project.utils_extentions.getFormattedAmount
 import org.koin.android.viewmodel.ext.android.viewModel
-
 
 class HomeFragment : Fragment() {
     companion object {
@@ -39,7 +33,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         handleObservables()
         binding.tvLinkSource.movementMethod = LinkMovementMethod.getInstance()
         binding.tvByCountry.setOnClickListener {
@@ -50,27 +43,32 @@ class HomeFragment : Fragment() {
     private fun handleObservables() {
         viewModel.isInternetConnected.observe(viewLifecycleOwner) { isConnected ->
             Log.e(TAG, "onViewCreated: isInternetConnected: $isConnected")
-            if (isConnected) {
-                Log.e(TAG, "onViewCreated: internet on")
-                viewModel.retrofitRequestForData()
-            } else {
-                //no internet at all
-                Log.e(TAG, "onViewCreated: internetIs off")
-                handleDataOffline()
+            Log.e(TAG, "onViewCreated: internet on")
+            viewModel.getWorldData()
+        }
+        viewModel.listState.observe(viewLifecycleOwner) {
+            if (it == ListState.SUCCESSFULLY_LOADED) {
+                handleSuccessLoadingView()
+            } else if (it == ListState.LOADING_FAILED) {
+                Log.e(TAG, "Loading failed")
                 handleViewOffline()
             }
             setViewContent()
         }
-        viewModel.repository.dataIsLoaded.observe(viewLifecycleOwner) {
-            Log.e(TAG, "onViewCreated: isDataLoaded: $it")
-            if (it) {
-                handleViewChange(it)
-            } else {
-                Log.e(TAG, "onViewCreated: onFailure retrofit")
-                handleDataOffline()
-                handleViewChange(it)
+    }
+
+    private fun handleSuccessLoadingView() {
+        binding.apply {
+
+            tvAlertNoInternet.visibility = View.GONE
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.m_green_2
+            ).let {
+                tvStLastUpdate.setTextColor(it)
+                tvDate.setTextColor(it)
             }
-            setViewContent()
+
         }
     }
 
@@ -86,54 +84,22 @@ class HomeFragment : Fragment() {
             tvAlertNoInternet.visibility = View.VISIBLE
             tvStLastUpdate.setTextColor(Color.BLACK)
             tvDate.setTextColor(Color.BLACK)
-
-        }
-    }
-
-    private fun handleDataOffline() {
-        viewModel.repository.setMapFromSharedPref()
-        setViewContent()
-    }
-
-    private fun handleViewChange(isDataLoaded: Boolean) {
-        Log.e(TAG, "handleViewChange: handle view change method when data is loaded is : $isDataLoaded", )
-        if (isDataLoaded) {
-            binding.tvStLastUpdate.setTextColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.m_green_2
-                )
-            )
-            binding.tvDate.setTextColor(ContextCompat.getColor(requireContext(), R.color.m_green_2))
-            binding.tvAlertNoInternet.visibility = View.GONE
-        } else {
-            if(viewModel.isInternetConnected.value == true){
-                Log.e(TAG, "handleViewChange: ", )
-                binding.apply {
-                    tvAlertNoInternet.text = requireContext().getString(R.string.no_internet_text)
-                    tvAlertNoInternet.visibility = View.VISIBLE
-                    tvStLastUpdate.setTextColor(Color.BLACK)
-                    tvDate.setTextColor(Color.BLACK)
-                }
-            }
-
         }
     }
 
     private fun setViewContent() {
         Log.e(TAG, "setViewContent:")
-
         binding.run {
-            val sharedPref=requireContext().getSharedPreferences(NAME_SHARED_PREF,Context.MODE_PRIVATE)
-            Log.e(TAG, "setViewContent: ${getFormattedAmount("123458744")} ", )
-            tvShowCases.text =viewModel.repository.dataHomeMap[HomeRepository.CASES]
-            tvCasesTodayHf.text = viewModel.repository.dataHomeMap[HomeRepository.TODAY_CASES]
-            tvDeathAll.text = viewModel.repository.dataHomeMap[HomeRepository.DEATHS]
-            tvDeathToday.text = viewModel.repository.dataHomeMap[HomeRepository.TODAY_DEATH]
-            tvShowRecovered.text = viewModel.repository.dataHomeMap[HomeRepository.RECOVERED]
-            tvRecoveredToday.text =
-                viewModel.repository.dataHomeMap[HomeRepository.TODAY_RECOVERED]
-            tvDate.text = viewModel.repository.dataHomeMap[HomeRepository.DATE_CONST]
+            viewModel.sharedPref.let {
+                tvShowCases.text = getFormattedAmount(it.getInt(HomeViewModel.CASES, 0))
+                tvCasesTodayHf.text = getFormattedAmount(it.getInt(HomeViewModel.TODAY_CASES, 0))
+                tvDeathAll.text = getFormattedAmount(it.getInt(HomeViewModel.DEATHS, 0))
+                tvDeathToday.text = getFormattedAmount(it.getInt(HomeViewModel.TODAY_DEATH, 0))
+                tvShowRecovered.text = getFormattedAmount(it.getInt(HomeViewModel.RECOVERED, 0))
+                tvRecoveredToday.text =
+                    getFormattedAmount(it.getInt(HomeViewModel.TODAY_RECOVERED, 0))
+                tvDate.text = it.getString(HomeViewModel.DATE_CONST, "....")
+            }
         }
     }
 }

@@ -28,15 +28,13 @@
     <string name="one_per_people">یک مورد ابتلا از هر</string>
     <string name="one_per_people_death">یک مورد فوت از هر</string>
     <string name="registered_tests">تست های ثبت شده</string>
-    <string name="one_per_people_test">یک مورد تست گرفته ثبت شده ازهر </string>
+    <string name="one_per_people_test">یک تست ثبت شده ازهر </string>
     <string name="retry">دوباره تلاش کن</string>
     <string name="mavared_death">موارد فوت</string>
     <string name="mavared_recovered"> موارد بهبود</string>
-    <string name="cases_per_population_st">درصدابتلا نسبت به جمعیت </string>
-    <string name="death_per_population_st">درصد فوت نسبت به جمعیت </string>
-    <string name="tests_per_population_st">درصد تست گرفتن نسبت به جمعیت </string>
-
+    <string name="cases_per_population_st">ابتلا نسبت به جمعیت </string>
+    <string name="death_per_population_st">فوت نسبت به جمعیت </string>
+    <string name="tests_per_population_st">تست نسبت به جمعیت </string>
     <string name="flag_of_country">flag of country</string>
-
     <string name="link_source">منبع بروزرسانی اطلاعات جهان سنج <a href="https://www.worldometers.info/coronavirus/">worldometers.info/coronavirus</a></string>
 </resources>

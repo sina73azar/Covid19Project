@@ -9,7 +9,7 @@ import org.koin.dsl.module
 const val NAME_SHARED_PREF = "CovidEarthData"
 val viewModelModule = module {
 
-    viewModel { HomeViewModel(get(), get()) }
+    viewModel { HomeViewModel(get(), get(),get()) }
     single { createSharedPreferences(get())}
     single { ListViewModel(get(),get()) }
 }
