@@ -16,6 +16,8 @@ import androidx.navigation.fragment.findNavController
 import com.sina.covid19project.R
 import com.sina.covid19project.repository.HomeRepository
 import com.sina.covid19project.databinding.FragmentHomeBinding
+import com.sina.covid19project.utils_extentions.getFormattedAmount
+import com.sina.covid19project.utils_extentions.splitNumberBy3
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -123,7 +125,8 @@ class HomeFragment : Fragment() {
         Log.e(TAG, "setViewContent:")
 
         binding.run {
-            tvShowCases.text = viewModel.repository.dataHomeMap[HomeRepository.CASES]
+            Log.e(TAG, "setViewContent: ${getFormattedAmount("123458744")} ", )
+            tvShowCases.text =viewModel.repository.dataHomeMap[HomeRepository.CASES]
             tvCasesTodayHf.text = viewModel.repository.dataHomeMap[HomeRepository.TODAY_CASES]
             tvDeathAll.text = viewModel.repository.dataHomeMap[HomeRepository.DEATHS]
             tvDeathToday.text = viewModel.repository.dataHomeMap[HomeRepository.TODAY_DEATH]

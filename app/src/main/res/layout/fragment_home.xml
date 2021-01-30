@@ -75,8 +75,8 @@
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow2"
-            android:layout_width="363dp"
-            android:layout_height="81dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
 
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
@@ -95,8 +95,8 @@
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow3"
-            android:layout_width="363dp"
-            android:layout_height="81dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
 
             android:background="@drawable/shape_bg_view_back_for_home"
             android:elevation="5dp"
@@ -110,8 +110,8 @@
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow4"
-            android:layout_width="331dp"
-            android:layout_height="81dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
 
             android:layout_marginStart="50dp"
             android:background="@drawable/shape_red_100_round_edge"
@@ -128,8 +128,8 @@
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow5"
-            android:layout_width="331dp"
-            android:layout_height="81dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/shape_red_100_round_edge"
             android:elevation="5dp"
             android:fadingEdgeLength="8dp"
@@ -142,8 +142,8 @@
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow6"
-            android:layout_width="331dp"
-            android:layout_height="81dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/shape_green_100_round_edge"
             android:elevation="5dp"
             android:fadingEdgeLength="10dp"
@@ -156,8 +156,8 @@
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow7"
-            android:layout_width="331dp"
-            android:layout_height="81dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/shape_green_100_round_edge"
             android:elevation="5dp"
             android:fadingEdgeLength="8dp"
@@ -191,7 +191,8 @@
             android:textSize="17sp"
             tools:layout_editor_absoluteX="29dp"
             tools:layout_editor_absoluteY="82dp"
-            tools:text="87878774542" />
+            tools:text="87878774542"
+            />
 
         <TextView
             android:id="@+id/tv_st_cases_today"
@@ -282,8 +283,8 @@
         <TextView
             android:id="@+id/tv_by_country"
             style="@style/style_text_2"
-            android:layout_width="363dp"
-            android:layout_height="108dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
 
 
             android:background="@drawable/shape_bg_btn_view_by_country"
