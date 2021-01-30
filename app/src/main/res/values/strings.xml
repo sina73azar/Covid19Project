@@ -37,5 +37,6 @@
     <string name="tests_per_population_st">درصد تست گرفتن نسبت به جمعیت </string>
 
     <string name="flag_of_country">flag of country</string>
-    <string name="link_source">منبع بروزرسانی اطلاعات(جهان سنج)   \n<a href="https://www.worldometers.info/coronavirus/">worldometers.info/coronavirus</a></string>
+
+    <string name="link_source">منبع بروزرسانی اطلاعات جهان سنج <a href="https://www.worldometers.info/coronavirus/">worldometers.info/coronavirus</a></string>
 </resources>
