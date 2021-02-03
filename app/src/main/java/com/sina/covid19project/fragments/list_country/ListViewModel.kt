@@ -100,7 +100,7 @@ class ListViewModel(val mContext: Context, private val myRepo: MyRepository) : V
 
 
     fun searchCountryByName(countryName: String): Boolean {
-        //return true if searched was successfull and country saved in curCountry
+        //return true if searched was successful and country saved in curCountry
         for (country in _mList!!) {
             country.country.equals(countryName).let {
                 if (it) {
@@ -114,9 +114,7 @@ class ListViewModel(val mContext: Context, private val myRepo: MyRepository) : V
 
     fun getPercentageStr(cases: Int?, population: Int?): CharSequence {
         if (cases != null && population != null) {
-
             val percent = (cases.toFloat()) / (population.toFloat()) * 100
-
             return "${percent.round(3)} %"
         }
         return ""

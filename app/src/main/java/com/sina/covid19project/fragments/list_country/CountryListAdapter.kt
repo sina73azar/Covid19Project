@@ -88,7 +88,7 @@ class CountryListAdapter(
     class MyViewHolder(val binding: CountryItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    public interface ListItemListener {
+     interface ListItemListener {
         fun listenToCountryItem(country: String)
     }
 }

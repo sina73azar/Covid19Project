@@ -13,7 +13,7 @@ fun Float.round(i: Int): Float {
 
 @SuppressLint("SimpleDateFormat")
 fun Long.reformat(): String {
-    val df = SimpleDateFormat("(yyyy/MM/dd - HH:mm:ss)")
+    val df = SimpleDateFormat("(HH:mm:ss)")
     return df.format(this)
 }
 

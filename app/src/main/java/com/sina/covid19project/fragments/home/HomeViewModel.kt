@@ -16,6 +16,7 @@ import com.sina.covid19project.data.data_model.WorldData
 import com.sina.covid19project.fragments.list_country.ListViewModel
 import com.sina.covid19project.repository.MyRepository
 import com.sina.covid19project.utils_extentions.ListState
+import com.sina.covid19project.utils_extentions.Utility
 import com.sina.covid19project.utils_extentions.reformat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -109,11 +110,12 @@ class HomeViewModel(
             putInt(TODAY_DEATH, worldData.todayDeaths?:0)
             putInt(RECOVERED, worldData.recovered?:0)
             putInt(TODAY_RECOVERED, worldData.todayRecovered?:0)
-            putString(DATE_CONST, getRightNowStr())
+            putString(DATE_CONST, getRightNowShamsiStr())
         }.apply()
     }
-    private fun getRightNowStr(): String {
-        return Date().time.reformat()
+
+    private fun getRightNowShamsiStr(): String {
+        return "${Utility.getCurrentShamsidate()} ${Date().time.reformat()}"
     }
 
 }

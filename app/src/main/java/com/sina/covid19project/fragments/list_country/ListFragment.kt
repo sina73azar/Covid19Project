@@ -1,17 +1,13 @@
 package com.sina.covid19project.fragments.list_country
 
-import android.content.Context
-import android.os.Build
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.view.inputmethod.InputMethodSubtype
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -20,8 +16,6 @@ import com.sina.covid19project.R
 import com.sina.covid19project.databinding.FragmentListBinding
 import com.sina.covid19project.utils_extentions.ListState
 import org.koin.android.viewmodel.ext.android.sharedViewModel
-import java.util.*
-
 
 class ListFragment : Fragment(),
     CountryListAdapter.ListItemListener {
@@ -158,12 +152,8 @@ class ListFragment : Fragment(),
         Snackbar.make(requireView(), R.string.no_internet_alert_text, 2000)
             .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.no_internet_color))
             .show()
-
     }
-
     override fun listenToCountryItem(country: String) {
         viewModelList._CountryNameClicked.value = country
     }
-
-
 }

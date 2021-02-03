@@ -87,21 +87,9 @@ class DetailCountryFragment : Fragment() {
                 tvOnePerMillionRecoveredData.text =
                     curCountry.recoveredPerOneMillion?.toInt().toString()
             }
-
-
         }
-
     }
-
     private fun loadImageFlag(url: String) {
         Glide.with(requireContext()).load(url).into(binding.imgFlag)
     }
-
-//    private fun addOffset() {
-//        binding.appBarLayout.addOnOffsetChangedListener(
-//            AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-//                Log.e(TAG, "onOffsetChanged: $verticalOffset",)
-//
-//            })
-//    }
 }
