@@ -31,7 +31,7 @@ class SplashFragment : Fragment() {
         Handler(Looper.getMainLooper()).postDelayed(
             {
                 checkInternetPermission()
-            }, 3000
+            }, 2000
         )
 
     }

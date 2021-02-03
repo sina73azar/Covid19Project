@@ -6,7 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -111,32 +111,40 @@ class ListFragment : Fragment(),
 
     private fun handleSortClicks() {
         binding.tvPopulationLf.setOnClickListener {
-            viewModelList.onSortWithPopulation()
-            adapterObj.notifyDataSetChanged()
-            unSelectSortBoxes()
-            binding.tvPopulationLf.background =
-                ContextCompat.getDrawable(requireContext(), R.drawable.shape_selected)
+            if (viewModelList.listState.value == ListState.SUCCESSFULLY_LOADED) {
+                viewModelList.onSortWithPopulation()
+                adapterObj.notifyDataSetChanged()
+                unSelectSortBoxes()
+                binding.tvPopulationLf.background =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.shape_selected)
+            }
         }
         binding.tvHighestCaught.setOnClickListener {
-            viewModelList.onSortWithCases()
-            adapterObj.notifyDataSetChanged()
-            unSelectSortBoxes()
-            binding.tvHighestCaught.background =
-                ContextCompat.getDrawable(requireContext(), R.drawable.shape_selected)
+            if (viewModelList.listState.value == ListState.SUCCESSFULLY_LOADED) {
+                viewModelList.onSortWithCases()
+                adapterObj.notifyDataSetChanged()
+                unSelectSortBoxes()
+                binding.tvHighestCaught.background =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.shape_selected)
+            }
         }
         binding.tvZToA.setOnClickListener {
-            viewModelList.onSortWithZtoA()
-            adapterObj.notifyDataSetChanged()
-            unSelectSortBoxes()
-            binding.tvZToA.background =
-                ContextCompat.getDrawable(requireContext(), R.drawable.shape_selected)
+            if (viewModelList.listState.value == ListState.SUCCESSFULLY_LOADED) {
+                viewModelList.onSortWithZtoA()
+                adapterObj.notifyDataSetChanged()
+                unSelectSortBoxes()
+                binding.tvZToA.background =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.shape_selected)
+            }
         }
         binding.tvHighestPercentage.setOnClickListener {
-            viewModelList.onSortWithPercentage()
-            adapterObj.notifyDataSetChanged()
-            unSelectSortBoxes()
-            binding.tvHighestPercentage.background =
-                ContextCompat.getDrawable(requireContext(), R.drawable.shape_selected)
+            if (viewModelList.listState.value == ListState.SUCCESSFULLY_LOADED) {
+                viewModelList.onSortWithPercentage()
+                adapterObj.notifyDataSetChanged()
+                unSelectSortBoxes()
+                binding.tvHighestPercentage.background =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.shape_selected)
+            }
         }
         binding.btnRetry.setOnClickListener {
             viewModelList.getListApi()
