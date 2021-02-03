@@ -46,7 +46,7 @@
     </style>
     <style name="style_text_1">
         <item name="fontFamily">@font/b_yaghut</item>
-        <item name="android:textColor">@color/blue_earth_900</item>
+        <item name="android:textColor">@color/grey_900</item>
     </style>
     <style name="style_text_2">
         <item name="fontFamily">@font/b_yaghut_bold</item>

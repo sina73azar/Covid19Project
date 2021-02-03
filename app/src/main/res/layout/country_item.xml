@@ -74,9 +74,10 @@
 
             <TextView
                 android:id="@+id/tv_country_name_list_item"
+                style="@style/style_text_1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
 
+                android:layout_height="wrap_content"
                 android:lines="1"
                 android:paddingStart="3dp"
                 android:paddingTop="1dp"

@@ -56,6 +56,8 @@ class ListFragment : Fragment(),
                 ListState.SUCCESSFULLY_LOADED -> {
                     viewModelList._mList?.let { it1 -> adapterObj.setList(it1) }
                     binding.rvCountries.adapter = adapterObj
+                    binding.tvHighestCaught.background =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.shape_selected)
                     binding.rvCountries.visibility = View.VISIBLE
                     binding.pbLf.visibility = View.GONE
                     binding.btnRetry.visibility = View.GONE
@@ -93,7 +95,11 @@ class ListFragment : Fragment(),
     private fun onSearch() {
         binding.etSearch.addTextChangedListener {
             Log.e(TAG, "onViewCreated: searchText -> ${it.toString()}")
-
+            if(it.isNullOrBlank()){
+                binding.etSearch.background=ContextCompat.getDrawable(requireContext(),R.drawable.shape_search_bg)
+            }else{
+                binding.etSearch.background=ContextCompat.getDrawable(requireContext(),R.drawable.shape_selected)
+            }
             //search and change _mList in viewModel
             viewModelList.onSearch(it.toString())
             //set new list in adapter
@@ -107,33 +113,44 @@ class ListFragment : Fragment(),
         binding.tvPopulationLf.setOnClickListener {
             viewModelList.onSortWithPopulation()
             adapterObj.notifyDataSetChanged()
-            Toast.makeText(requireContext(), "براساس جمعیت مرتب شد", Toast.LENGTH_SHORT).show()
+            unSelectSortBoxes()
+            binding.tvPopulationLf.background =
+                ContextCompat.getDrawable(requireContext(), R.drawable.shape_selected)
         }
         binding.tvHighestCaught.setOnClickListener {
             viewModelList.onSortWithCases()
             adapterObj.notifyDataSetChanged()
-            Toast.makeText(
-                requireContext(),
-                "براساس بیشترین مورد ابتلا مرتب شد",
-                Toast.LENGTH_SHORT
-            ).show()
+            unSelectSortBoxes()
+            binding.tvHighestCaught.background =
+                ContextCompat.getDrawable(requireContext(), R.drawable.shape_selected)
         }
         binding.tvZToA.setOnClickListener {
             viewModelList.onSortWithZtoA()
             adapterObj.notifyDataSetChanged()
-            Toast.makeText(requireContext(), "برعکس حروف الفبا مرتب شد", Toast.LENGTH_SHORT).show()
+            unSelectSortBoxes()
+            binding.tvZToA.background =
+                ContextCompat.getDrawable(requireContext(), R.drawable.shape_selected)
         }
         binding.tvHighestPercentage.setOnClickListener {
             viewModelList.onSortWithPercentage()
             adapterObj.notifyDataSetChanged()
-            Toast.makeText(
-                requireContext(),
-                "براساس بیشترین درصد مرگ نسبت به ابتلا مرتب شد",
-                Toast.LENGTH_SHORT
-            ).show()
+            unSelectSortBoxes()
+            binding.tvHighestPercentage.background =
+                ContextCompat.getDrawable(requireContext(), R.drawable.shape_selected)
         }
         binding.btnRetry.setOnClickListener {
             viewModelList.getListApi()
+        }
+    }
+
+    private fun unSelectSortBoxes() {
+        binding.run {
+            ContextCompat.getDrawable(requireContext(),R.drawable.shape_search_bg).let {
+                tvHighestPercentage.background=it
+                tvHighestCaught.background=it
+                tvZToA.background=it
+                tvPopulationLf.background=it
+            }
         }
     }
 

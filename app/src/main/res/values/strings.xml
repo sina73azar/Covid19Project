@@ -16,6 +16,8 @@
     <string name="network_error">خطای شبکه</string>
     <string name="internet_error">اینترنت متصل نیست</string>
     <string name="last_update">آخرین بروزرسانی:</string>
+    <string name="most_cases">بالاترین مبتلا</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="updated_source">تعداد بروزرسانی منبع</string>
@@ -37,4 +39,7 @@
     <string name="tests_per_population_st">تست نسبت به جمعیت </string>
     <string name="flag_of_country">flag of country</string>
     <string name="link_source">منبع بروزرسانی اطلاعات جهان سنج <a href="https://www.worldometers.info/coronavirus/">worldometers.info/coronavirus</a></string>
+    <string name="death_percentage">درصدمرگ</string>
+    <string name="z_to_a">Z to A</string>
+    <string name="population">جمعیت</string>
 </resources>
