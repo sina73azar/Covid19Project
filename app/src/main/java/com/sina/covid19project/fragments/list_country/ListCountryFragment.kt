@@ -17,7 +17,7 @@ import com.sina.covid19project.databinding.FragmentListBinding
 import com.sina.covid19project.utils_extentions.ListState
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
-class ListFragment : Fragment(),
+class ListCountryFragment : Fragment(),
     CountryListAdapter.ListItemListener {
     lateinit var binding: FragmentListBinding
     private val viewModelList: ListViewModel by sharedViewModel()
@@ -36,7 +36,7 @@ class ListFragment : Fragment(),
     }
 
     companion object {
-        const val TAG = "ListFragment"
+        const val TAG = "ListCountryFragment"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -84,7 +84,7 @@ class ListFragment : Fragment(),
             if (it.isNotEmpty()) {
                 //been clicked
                 findNavController().navigate(
-                    ListFragmentDirections.actionListFragmentToDetailCountryFragment(
+                    ListCountryFragmentDirections.actionListFragmentToDetailCountryFragment(
                         it
                     )
                 )
