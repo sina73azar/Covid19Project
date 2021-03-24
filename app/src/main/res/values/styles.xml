@@ -56,4 +56,12 @@
         <item name="fontFamily">@font/samim_number</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
+
+    //new design style
+    <style name="tabs">
+        <item name="android:textSize">17sp</item>
+        <item name="background">@color/grey_100</item>
+        <item name="fontFamily">@font/iransanz_medium</item>
+    </style>
 </resources>

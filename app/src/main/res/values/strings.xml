@@ -42,4 +42,7 @@
     <string name="death_percentage">درصدمرگ</string>
     <string name="z_to_a">Z to A</string>
     <string name="population">جمعیت</string>
+    <string name="world">جهان</string>
+    <string name="countries">کشورها</string>
+
 </resources>

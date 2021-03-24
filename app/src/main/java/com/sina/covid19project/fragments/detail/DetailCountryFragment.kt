@@ -36,8 +36,10 @@ class DetailCountryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //get country name from list fragment
+
         val countryName =
             DetailCountryFragmentArgs.fromBundle(requireArguments()).countryName
+
 //        binding.tvCountryName.text = countryName
         getCountryData(countryName).let {
             if (it) {
