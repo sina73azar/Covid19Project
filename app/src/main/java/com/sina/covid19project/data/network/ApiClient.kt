@@ -9,9 +9,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient{
 
-    private const val BASE_URL="https://rayawin.ir/content/countryapi/"
+//    private const val BASE_URL="https://rayawin.ir/content/countryapi/"
 
-//    private const val BASE_URL="https://disease.sh/v3/covid-19/"
+    private const val BASE_URL="https://disease.sh/v3/covid-19/"
     private var retrofit:Retrofit?=null
 
 
